@@ -40,8 +40,6 @@ This is a Flask-based web application for managing users with basic features suc
 
 File Structure
 
-	graphql
- 
 	- app.py               # Flask application logic
 	- templates/           # HTML templates for user interface
 	  - home.html          # User Dashboard
