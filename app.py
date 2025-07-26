@@ -81,7 +81,7 @@ PUBLIC_KEY=os.environ.get('EMAILJS_PUBLIC_KEY')
 SERVICE_ID=os.environ.get('EMAILJS_SERVICE_ID')
 TEMPLATE_ID=os.environ.get('EMAILJS_TEMPLATE_ID')
 
-REDIRECT_URI='http://localhost:5000/google_sign_in' # for oauth sign in
+REDIRECT_URI='http://127.0.0.1:5000/google_sign_in' # for oauth sign in
 REDIRECT_URI_DRIVE='http://localhost:5000/google_drive_callback' #for google_drive
 # REDIRECT_URI = 'https://qaoncloud.com/EMP/google_sign_in' # for oauth sign in
 # REDIRECT_URI_DRIVE='https://qaoncloud.com/EMP/google_drive_callback' #for google_drive
