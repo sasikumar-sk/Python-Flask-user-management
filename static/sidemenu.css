@@ -135,17 +135,21 @@ i {
   visibility: visible;
 }
 .active {
-  background-color: #007bff !important; /* Bootstrap primary blue */
+  background-color: #6fc8c8 !important; /* Bootstrap primary blue */
   color: white !important;
-  border-radius: 0.25rem;
+  border-radius: 0.5rem;
 }
 
 /* Prevent going off screen on very small screens or zoomed views */
-@media screen and (max-width: 600px) {
-  .dropdown-menu .dropdown-item::after {
+  @media screen and (max-width: 600px) {
+    .dropdown-menu .dropdown-item::after {
     left: 0;
     transform: none;
     right: 0;
     margin: auto;
   }
+}
+
+.nav-item span {
+  font-size: 12px !important; /* or 13px depending on Dmax site's size */
 }

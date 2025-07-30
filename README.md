@@ -74,4 +74,3 @@
 - As an Admin, you will have access to the `config.py` file, where you can change the contents of dropdown filters.
 ## contact
 Project Link:[https://github.com/whitedevil1233rrffrfrrferf/intern_final]
-

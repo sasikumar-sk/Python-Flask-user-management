@@ -1,0 +1,335 @@
+[33mcommit 954986edbecbe17c5991ea638697b18d07aac53c[m
+Author: sasi <DCKLP-125@DC-KA-QA-RL-256.desicrew.in>
+Date:   Wed Jul 30 09:10:17 2025 +0530
+
+    Ignore local database files
+
+[33mcommit ee909692758c746ccb396bb49403e259740875e5[m
+Author: sasi <git@stash>
+Date:   Wed Jul 30 09:08:04 2025 +0530
+
+    index on (no branch): 110e5dac Update README.md
+
+[33mcommit fe6903d4138513f8d0f1579d19c07d11fb286d85[m[33m ([m[1;32mmain[m[33m)[m
+Author: sasi <DCKLP-125@DC-KA-QA-RL-256.desicrew.in>
+Date:   Wed Jul 30 08:48:51 2025 +0530
+
+    Updates- table headers
+
+[33mcommit cd4139a2a835f987094a84728ca96b90c57c6d0f[m
+Author: sasi <DCKLP-125@DC-KA-QA-RL-256.desicrew.in>
+Date:   Sat Jul 26 10:15:05 2025 +0530
+
+    Initial commit of Flask app
+
+[33mcommit 990409d4969fc01f77242a44ecabd811c65b7d1f[m
+Author: sasi <DCKLP-125@DC-KA-QA-RL-256.desicrew.in>
+Date:   Thu Jul 10 22:04:53 2025 +0530
+
+    Python login code commit
+
+[33mcommit 196739077a4e1df6206e1fc22ca65586a71a875d[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Jun 11 11:04:59 2025 +0530
+
+    bulk_bugs
+
+[33mcommit 428e421086cbb338c4fe58502e3caf376085a899[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Tue May 27 19:59:32 2025 +0530
+
+    login_error
+
+[33mcommit 7e5c36ea725071465724075707528b97936ba3c8[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu May 22 10:04:15 2025 +0530
+
+    name_validation
+
+[33mcommit 97979085e3ad8455751b3958e66de18e606d79c8[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon May 19 08:06:40 2025 +0530
+
+    location_twice_bug
+
+[33mcommit b19a2afd5d75b41c424fcae694110908eed9b6f2[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed May 14 10:20:18 2025 +0530
+
+    bugs
+
+[33mcommit 988a0ab5e71fa981788f03e9244cfd1cd871834e[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon May 5 09:56:28 2025 +0530
+
+    sign page
+
+[33mcommit 583ba29468faf20b1b79867a7b2fb494957b0646[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Apr 30 10:09:45 2025 +0530
+
+    modal_changes
+
+[33mcommit 512a91b59840acf6bf46b861144f4f0256960619[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Apr 24 14:43:34 2025 +0530
+
+    dashboard bar_graphs
+
+[33mcommit e307efd716e26c6a17b405f079a0738dc95adb56[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Apr 21 14:22:48 2025 +0530
+
+    sidemenu
+
+[33mcommit 5020e1c177b6e17329b03491877693dc249dd8cd[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Apr 21 11:26:50 2025 +0530
+
+    dashboard pie
+
+[33mcommit 3c5fc15e8e79c0fbc52e7f67d15443b6b544ed76[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Tue Apr 15 20:18:00 2025 +0530
+
+    dashboard_filters
+
+[33mcommit 80d6050a4445e49b1a37177925ae803432a436af[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Tue Apr 15 06:58:50 2025 +0530
+
+    dashboard_filter
+
+[33mcommit 70047128eb0b8e9168a814a14450eb450d26f037[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Apr 9 07:32:23 2025 +0530
+
+    resume_details_ui_changes
+
+[33mcommit 94a899ae3b200b2c8b320971eab825f327e7bbe5[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Apr 7 21:29:58 2025 +0530
+
+    filters_UI
+
+[33mcommit 4260059b88c2cf0a09d893f6916ccdd8b8b34e48[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Apr 7 14:00:16 2025 +0530
+
+    Resume_management
+
+[33mcommit 368a5c4062ef5d5da2941a21d4f2c98ef72ad908[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Fri Apr 4 20:42:52 2025 +0530
+
+    view_details page
+
+[33mcommit c1bedf862ad12b75b4ff2f6254dc544abaffb236[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Apr 3 20:24:41 2025 +0530
+
+    url_for
+
+[33mcommit b7399106d3e9324a3f531e0c1f9bccd86cbef5a8[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Apr 2 19:48:08 2025 +0530
+
+    main
+
+[33mcommit 8ec6307595a9ca52fe30fc64e842a22a6dae6ef6[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Mar 27 10:24:32 2025 +0530
+
+    dynamic_email
+
+[33mcommit f34c0ec4dcdf7fa73560c35dd436acd9811aede8[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Mar 24 10:59:34 2025 +0530
+
+    panel_database
+
+[33mcommit c463141a42f95af509a65f2d6cb8eeeb25d324eb[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Tue Mar 18 11:48:48 2025 +0530
+
+    employee_page
+
+[33mcommit 8dce70e7372837ac007a445c77b0c1a37df12ee0[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Fri Feb 7 12:04:57 2025 +0530
+
+    home_buttons
+
+[33mcommit f8c460c2aa9fc53a977bf5ef0ea32d563a0924dc[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Nov 21 16:35:00 2024 +0530
+
+    edit_resume
+
+[33mcommit 887fcec86040fbf03a81ff3183243440b42c65f3[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Oct 23 13:40:23 2024 +0530
+
+    emails_added
+
+[33mcommit 6baca92e8cdb2f79aac67c385d73d1c038cf1be9[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Oct 23 10:38:09 2024 +0530
+
+    email
+
+[33mcommit 69abec1ddb44f44b60dbb182f5ccf49faa88e5ea[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Oct 14 20:02:07 2024 +0530
+
+    filters
+
+[33mcommit e2907930854b1488593fd47733b377de068d9e6e[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Oct 10 10:07:55 2024 +0530
+
+    excel_resume
+
+[33mcommit aec1ed9fbf0c01696d8377356069965628298d27[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Oct 3 16:49:30 2024 +0530
+
+    clear_data
+
+[33mcommit 7ccca977519df892284a2d05a84f095006c2309e[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Sep 12 19:45:50 2024 +0530
+
+    role_bug
+
+[33mcommit 5e3fdde356c6bde46d7aa32c26fd4ba50f7c0555[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Sep 4 11:20:47 2024 +0530
+
+    email_js
+
+[33mcommit 438bcdc9701a3a79ba0326910d8048254f8d22e1[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Tue Sep 3 10:19:01 2024 +0530
+
+    ws
+
+[33mcommit 363ea963205c80f044e21eda34a2b3c74b390de5[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Sat Aug 31 21:14:35 2024 +0530
+
+    dmax_v filter chnges
+
+[33mcommit 231de3cad5ba6f49989ce294939cd5d6830a8b9a[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Aug 26 21:01:23 2024 +0530
+
+    dashboard
+
+[33mcommit d8e719a12cc2efb6db8bbf36ebfbe156d40846f3[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Aug 26 09:44:55 2024 +0530
+
+    home_page_filters
+
+[33mcommit e555ed10cf33c0656d4ce37e77d241eb7b6074f8[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Aug 22 21:56:05 2024 +0530
+
+    dmax_filters
+
+[33mcommit 00ea3dde434019ee4f94799beb9125c1648ce757[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Aug 21 20:52:36 2024 +0530
+
+    view_page
+
+[33mcommit 919891e288be896e3fc0efed7885b198d1099441[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Tue Aug 20 21:08:05 2024 +0530
+
+    date1
+
+[33mcommit 26270cd47a83fc7a778e272b439cb37a26ed92be[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Aug 19 20:45:11 2024 +0530
+
+    dmax_add
+
+[33mcommit 53db7fdd1feaa32ab4bc32e026758adba3a6a820[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Sat Aug 17 20:51:59 2024 +0530
+
+    dmax3
+
+[33mcommit 57fbdbf931a6c94f66f06b02d4528ba071cc221b[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Fri Aug 16 20:34:45 2024 +0530
+
+    Dmax
+
+[33mcommit d59cb6493fe6419dfe4bbe706468e06b7cb9714f[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Aug 14 22:04:30 2024 +0530
+
+    d1
+
+[33mcommit 8d8543f8231dd26f4316dbaab9a4f3faa9a4321c[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Aug 8 20:05:36 2024 +0530
+
+    password
+
+[33mcommit 93eacadabe65f9343aa5de8f81e532fd715b17ee[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Aug 7 20:05:07 2024 +0530
+
+    changes
+
+[33mcommit 06c8b184fc0031c15e01aa7c371466432487ef20[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Tue Aug 6 19:59:21 2024 +0530
+
+    flash_changes
+
+[33mcommit d51c5413305fa6b6aa171bf046d3d5314dafc342[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Fri Aug 2 20:00:27 2024 +0530
+
+    sort_cols
+
+[33mcommit b469e4cfb77bfedaa727153e0dcef115d75bede9[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Thu Aug 1 20:52:35 2024 +0530
+
+    emp_data
+
+[33mcommit a96dbbe90f01809d5009e87daa965b8bef72935f[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Fri Jul 26 18:18:22 2024 +0530
+
+    dashboard
+
+[33mcommit a95b54ce567ad626b4c6ad6bad9e688a9ec3027b[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Wed Jul 24 18:57:40 2024 +0530
+
+    flash_messages
+
+[33mcommit d9fe5eb728e0ea2d8a1a01b0e16c605d6261e2f6[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Tue Jul 23 19:31:29 2024 +0530
+
+    search_filter
+
+[33mcommit 219f082072f94d6cc16b250a2b210c29230bb6b1[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Mon Jul 22 19:24:34 2024 +0530
+
+    register_page
+
+[33mcommit 5333496705b885302f5359c94d9e43083ec3682f[m
+Author: whitedevil1233rrffrfrrferf <121005612+whitedevil1233rrffrfrrferf@users.noreply.github.com>
+Date:   Sat Jul 20 21:46:27 2024 +0530
+
+    final"
