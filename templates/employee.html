@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee data</title>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
     </script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='employee.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='font.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
-
+    
     <script type="text/javascript">
-        (function () {
+        (function(){
             emailjs.init("{{public_key}}");
         })();
     </script>
@@ -26,7 +24,6 @@
             position: relative;
             display: inline-block;
         }
-
         #dropdown-menu {
             display: none;
             width: 100%;
@@ -34,254 +31,218 @@
             background: white;
             color: black !important;
             border: 1px solid #ccc;
-            padding: 1px;
+            padding:10px;
             z-index: 100;
         }
-
-        label {
+        label{
             display: block;
-            color: #00A9FF;
-
+            
         }
     </style>
 
-
+    
 </head>
-
 <body>
-
+    
     {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    {% for category, message in messages %}
-    {% if category == 'error' %}
-    <div class="alert alert-danger add_flash_message" role="alert">
-        {{ message }}
-    </div>
-    {% elif category == 'success' %}
-    <div class="alert alert-success add_flash_message" role="alert">
-        {{ message }}
-    </div>
-    {% endif %}
-    {% endfor %}
-    {% endif %}
-    {% endwith %}
+        {% if messages %}
+        {% for category, message in messages %}
+            {% if category == 'error' %}
+            <div class="alert alert-danger add_flash_message" role="alert">
+                {{ message }}
+            </div>
+            {% elif category == 'success' %}
+            <div class="alert alert-success add_flash_message" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+        {% endfor %}
+        {% endif %}
+    {% endwith %}     
     <div class="first_div">
         {% include 'sidemenu.html'%}
-        <div style="margin-left: 7rem; height: 900px; width: 500%; overflow-x: hidden; outline: none;">
+        
+        <div style=" margin-left:7rem;width: 140%;height:500%;width: 400%; overflow-x: hidden;">
             <h1 class="headline">Candidate Resumes</h1>
-            <div class="container-fluid" style="margin-bottom: 1rem;margin-top: 1rem !important;">
-                <nav class="navbar navbar-expand-lg bg-body-tertiary" style="margin-top: 1rem;">
-                    <div class="container">
-
-                        <div class="collapse navbar-collapse">
-
-                            <form class="d-flex col-10 my-2" id="searchForm" action="{{ url_for('employee') }}"
-                                method="GET" role="search" onsubmit="handleFilters()">
-                                <input class="form-control me-2" type="search" id="search_bar" name="search"
-                                    placeholder="Search by Name / QA Lead" value="{{ search_query }}"
-                                    aria-label="Search" style="margin-right:2rem!important;">
-
-                                <button class="btn btn-primary" type="submit">Search</button>
-
-                                <button type="button" class="btn btn-danger" id="clearSearch"
-                                    style="margin-left: 10px;">Clear</button>
-                            </form>
-                            <form class="d-flex col-10 my-2" action="{{ url_for('employee') }}" role="search"
-                                method="GET" style="visibility: hidden;">
-                                <input class="form-control me-2" type="search" id="search_bar_qa"
-                                    placeholder="Search by QA Lead" name="qa_lead" aria-label="Search"
-                                    value="{{qa_lead_query}}" style="margin-right:2rem!important;">
-                                <button class="btn btn-primary" type="submit" onclick="filterTable_qa()">Search</button>
-                                <button type="button" class="btn btn-danger" id="clearSearch_qa"
-                                    style="margin-left: 10px;">Clear</button>
-                            </form>
-                        </div>
-                    </div>
-                </nav>
+            <div class="container-fluid" style="margin-bottom: 2rem;margin-top: 1rem !important;">
+          <nav class="navbar navbar-expand-lg bg-body-tertiary" style="margin-top: 1rem;">
+            <div class="container" >
+              
+              <div class="collapse navbar-collapse" id="navbarSupportedContent" style="display: flex; flex-direction: column;height: 4rem;">
+                
+                <form class="d-flex col-10 my-2" id="searchForm" action="{{ url_for('employee') }}" method="GET" role="search" onsubmit="handleFilters()">
+                    <input class="form-control me-2" 
+                            type="search" 
+                            id="search_bar" 
+                            name="search" 
+                            placeholder="Search by Name / QA Lead"
+                            value="{{ search_query }}"
+                            aria-label="Search" 
+                            
+                            style="margin-right:2rem!important;">
+                    
+                    <button class="btn btn-primary" type="submit">Search</button>
+                    
+                    <button type="button" class="btn btn-danger" id="clearSearch" style="margin-left: 10px;">Clear</button>
+                </form>
+                <form class="d-flex col-10 my-2" action="{{ url_for('employee') }}" role="search" method="GET" style="visibility: hidden;">
+                  <input class="form-control me-2" type="search" id="search_bar_qa" placeholder="Search by QA Lead" name="qa_lead" aria-label="Search" value="{{qa_lead_query}}" style="margin-right:2rem!important;">
+                  <button class="btn btn-primary" type="submit" onclick="filterTable_qa()">Search</button>
+                  <button type="button" class="btn btn-danger" id="clearSearch_qa" style="margin-left: 10px;">Clear</button>
+                </form>
+              </div>
             </div>
-
-
-
-
-            <div class="filters"
-                style="margin-bottom: 1px; margin-left: 60px;margin-top: 5px; width: calc(100% - 60px);">
-                <div class="flex" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; gap: 0.9rem;">
-
-                    <div style="margin-bottom: 10px; margin-top: 20px; display: none;" class="inner_filter"
-                        id="introFilterContainer">
+          </nav>
+        </div>
+            <div class="filters" style="margin-bottom: 20px; margin-left: 1rem; width: 95%;">
+                
+                <div class="flex" style="display: flex; justify-content: space-between; align-items: center;flex-wrap: wrap;">
+                    <div style="margin-bottom: 10px; margin-top: 20px; display: none;" class="inner_filter" id="introFilterContainer">
                         <label for="introFilter" class="filter_label">Intro Call Status:</label>
                         <select id="introFilter" onchange="handleFilters()">
                             <option value="">Select</option>
-                            <option value="Move to Interview 1" {% if intro_filter=="Move to Interview 1" %}selected{%
-                                endif %}>Accepted</option>
-                            <option value="rejected" {% if intro_filter=="rejected" %}selected{% endif %}>Rejected
-                            </option>
-                            <option value="Intro call not conducted" {% if intro_filter=="Intro call not conducted"
-                                %}selected{% endif %}>Not conducted</option>
+                            <option value="Move to Interview 1" {% if intro_filter == "Move to Interview 1" %}selected{% endif %}>Accepted</option>
+                            <option value="rejected" {% if intro_filter == "rejected" %}selected{% endif %}>Rejected</option>
+                            <option value="Intro call not conducted" {% if intro_filter == "Intro call not conducted" %}selected{% endif %}>Not conducted</option>
                         </select>
                     </div>
-                    <div style="margin-bottom: 10px; margin-top: 20px; display: none;" class="inner_filter"
-                        id="interview1FilterContainer">
+                    <div style="margin-bottom: 10px; margin-top: 20px; display: none;" class="inner_filter" id="interview1FilterContainer">
                         <label for="interview1Filter" class="filter_label">L1 Status:</label>
                         <select id="interview1Filter" onchange="handleFilters()">
                             <option value="">Select</option>
-                            <option value="Move to Interview 2" {% if interview1_filter=="Move to Interview 2"
-                                %}selected{% endif %}>Accepted</option>
-                            <option value="rejected" {% if interview1_filter=="rejected" %}selected{% endif %}>Rejected
-                            </option>
-                            <option value="Interview 1 not conducted" {% if
-                                interview1_filter=="Interview 1 not conducted" %}selected{% endif %}>Not conducted
-                            </option>
+                            <option value="Move to Interview 2" {% if interview1_filter == "Move to Interview 2" %}selected{% endif %}>Accepted</option>
+                            <option value="rejected" {% if interview1_filter == "rejected" %}selected{% endif %}>Rejected</option>
+                            <option value="Interview 1 not conducted" {% if interview1_filter == "Interview 1 not conducted" %}selected{% endif %}>Not conducted</option>
                         </select>
                     </div>
-                    <div style="margin-bottom:10px; margin-top: 20px;display: none;" class="inner_filter"
-                        id="interview2FilterContainer">
+                    <div style="margin-bottom:10px; margin-top: 20px;display: none;" class="inner_filter" id="interview2FilterContainer">
                         <label for="interview2Filter" class="filter_label">L2 Status:</label>
                         <select id="interview2Filter" onchange="handleFilters()">
                             <option value="">Select</option>
-                            <option value="Move to HR round" {% if interview2_filter=="Move to HR round" %}selected{%
-                                endif %}>Accepted</option>
-                            <option value="rejected" {% if interview2_filter=="rejected" %}selected{% endif %}>Rejected
-                            </option>
-                            <option value="Interview 2 not conducted" {% if
-                                interview2_filter=="Interview 2 not conducted" %}selected{% endif %}>Not conducted
-                            </option>
+                            <option value="Move to HR round" {% if interview2_filter == "Move to HR round" %}selected{% endif %}>Accepted</option>
+                            <option value="rejected" {% if interview2_filter == "rejected" %}selected{% endif %}>Rejected</option>
+                            <option value="Interview 2 not conducted" {% if interview2_filter == "Interview 2 not conducted" %}selected{% endif %}>Not conducted</option>
                         </select>
                     </div>
-
-                    <div style="margin-bottom: 10px; margin-top: 20px; display: none;" class="inner_filter"
-                        id="allRoundsFilterContainer">
+                    
+                    <div style="margin-bottom: 10px; margin-top: 20px; display: none;" class="inner_filter" id="allRoundsFilterContainer">
                         <label for="allRoundsFilter" class="filter_label">All rounds cleared:</label>
                         <select id="allRoundsFilter" onchange="handleFilters()">
                             <option value="">Select</option>
-                            <option value="cleared" {% if hr_filter=="cleared" %}selected{% endif %}>Cleared</option>
+                            <option value="cleared" {% if hr_filter == "cleared" %}selected{% endif %}>Cleared</option>
                         </select>
                     </div>
                     <div class="inner_filter" style="margin-bottom: 10px; margin-top: 20px;">
                         <label for="role" class="label " class="filter_label">Role:</label>
-                        <select name="role" id="role" onchange="handleFilters()">
+                        <select name="role" id="role" onchange="handleFilters()" >
                             <option value="">Select</option>
-                            <option value="Intern" {% if filter_role=='Intern' %}selected{% endif %}>Intern</option>
-                            <option value="Jr. QA Engineer" {% if filter_role=='Jr. QA Engineer' %}selected{% endif %}>
-                                Jr. QA Engineer</option>
-                            <option value="QA Engineer" {% if filter_role=='QA Engineer' %}selected{% endif %}>QA
-                                Engineer</option>
-                            <option value="Sr. QA Engineer" {% if filter_role=='Sr. QA Engineer' %}selected{% endif %}>
-                                Sr. QA Engineer</option>
-                            <option value="QA Lead" {% if filter_role=='QA Lead' %}selected{% endif %}>QA Lead</option>
+                            <option value="Intern" {% if filter_role == 'Intern' %}selected{% endif %}>Intern</option>
+                            <option value="Jr. QA Engineer" {% if filter_role == 'Jr. QA Engineer' %}selected{% endif %}>Jr. QA Engineer</option>
+                            <option value="QA Engineer" {% if filter_role == 'QA Engineer' %}selected{% endif %}>QA Engineer</option>
+                            <option value="Sr. QA Engineer" {% if filter_role == 'Sr. QA Engineer' %}selected{% endif %}>Sr. QA Engineer</option>
+                            <option value="QA Lead" {% if filter_role == 'QA Lead' %}selected{% endif %}>QA Lead</option>
                             <!-- Populate dynamically or add static options -->
-
-
-
-
+                            
+                            
+                            
+                            
                         </select>
                     </div>
                     <div class="inner_filter" style="margin-bottom: 10px; margin-top: 20px;">
                         <label for="month" class="filter_label">Month:</label>
-                        <select id="month" onchange="handleFilters()">
+                        <select id="month" onchange="handleFilters()" >
                             {% for month in months %}
-                            <option value="{{ month }}" {% if not selected_month and month==current_month %} selected {%
-                                elif selected_month and month==selected_month %} selected {% endif %}>
-                                {{ month }}
-                            </option>
-                            {% endfor %}
+                                <option value="{{ month }}" 
+                                    
+                                    {% if not selected_month and month == current_month %}
+                                        selected
+                                    {% elif selected_month and month == selected_month %}
+                                        selected
+                                    {% endif %}
+                                >
+                                    {{ month }}
+                                </option>
+                             {% endfor %}
                         </select>
                     </div>
                     <div class="inner_filter" style="margin-bottom: 10px; margin-top: 20px;">
-                        <label for="week" class="filter_label">Week:</label>
-                        <select id="week" name="week" required onchange="handzleFilters()">
+                        <label for="week"  class="filter_label">Week:</label>
+                        <select id="week" name="week"  required onchange="handleFilters()">
                             <option value="">Select a Week</option>
-                            <option value="Week 1" {% if filter_week=="Week 1" %}selected{% endif %}>Week 1</option>
-                            <option value="Week 2" {% if filter_week=="Week 2" %}selected{% endif %}>Week 2</option>
-                            <option value="Week 3" {% if filter_week=="Week 3" %}selected{% endif %}>Week 3</option>
-                            <option value="Week 4" {% if filter_week=="Week 4" %}selected{% endif %}>Week 4</option>
-                            <option value="Week 5" {% if filter_week=="Week 5" %}selected{% endif %}>Week 5</option>
+                            <option value="Week 1" {% if filter_week == "Week 1" %}selected{% endif %}>Week 1</option>
+                            <option value="Week 2" {% if filter_week == "Week 2" %}selected{% endif %}>Week 2</option>
+                            <option value="Week 3" {% if filter_week == "Week 3" %}selected{% endif %}>Week 3</option>
+                            <option value="Week 4" {% if filter_week == "Week 4" %}selected{% endif %}>Week 4</option>
+                            <option value="Week 5" {% if filter_week == "Week 5" %}selected{% endif %}>Week 5</option>
                         </select>
                     </div>
-                    <div class="inner_filter" style="margin-bottom: 10px; margin-top: 20px;display: none;"
-                        id="yearFilterContainer">
-                        <label for="year" class="filter_label">Year:</label>
-                        <select id="year" name="year" required onchange="handleFilters()">
+                    <div class="inner_filter" style="margin-bottom: 10px; margin-top: 20px;display: none;" id="yearFilterContainer">
+                        <label for="year"  class="filter_label">Year:</label>
+                        <select id="year" name="year"  required onchange="handleFilters()">
                             <option value="">Select Year</option>
                             {% for year in years %}
-                            <option value="{{ year }}" {% if year==selected_year %}selected{% endif %}>{{ year }}
-                            </option>
+                                <option value="{{ year }}" {% if year == selected_year %}selected{% endif %}>{{ year }}</option>
                             {% endfor %}
                         </select>
                     </div>
-
+                    
                     <div style="position: relative; display: inline-block;">
-                        <button onclick="openMoreFilters()" class="more-filters-btn"
-                            style="text-align: left; margin-top:30px !important;">More ..</button>
+                        <button onclick="openMoreFilters()" class="more-filters-btn" style="text-align: left; margin-top:30px !important;">More ..</button>
                         <div id="moreFiltersModal" class="filter-modal" style="display: none; ">
-                            <div class="filter-modal-content">
-                                <h3 style="font-size: 0.9rem; font-weight: bold;">Filters</h3>
-
-                                <!-- ROUND FILTERS -->
-                                <div class="round-filters">
-                                    <label><input type="checkbox" value="introFilterContainer"
-                                            onchange="toggleFilter(this)"> Intro Call Status</label>
-                                    <label><input type="checkbox" value="interview1FilterContainer"
-                                            onchange="toggleFilter(this)"> L1 Status</label>
-                                    <label><input type="checkbox" value="interview2FilterContainer"
-                                            onchange="toggleFilter(this)"> L2 Status</label>
-                                    <label><input type="checkbox" value="allRoundsFilterContainer"
-                                            onchange="toggleFilter(this)">All Rounds Status</label>
-                                    <label><input type="checkbox" value="yearFilterContainer"
-                                            onchange="toggleFilter(this)">Year</label>
-                                </div>
-
-                                <hr>
-
-                                <!-- COLUMN TOGGLES -->
-                                <h3 style="font-size: 0.9rem; font-weight: bold;">Table columns</h4>
-                                    <div class="column-filters">
-                                        <label><input type="checkbox" value="candidate_id" checked
-                                                onchange="toggleColumn(this)"> ID</label>
-                                        <label><input type="checkbox" value="candidate_name" checked
-                                                onchange="toggleColumn(this)"> Name</label>
-                                        <label><input type="checkbox" value="contact_number" checked
-                                                onchange="toggleColumn(this)"> Contact Num</label>
-                                        <label><input type="checkbox" value="experience" checked
-                                                onchange="toggleColumn(this)"> Experience</label>
-                                        <label><input type="checkbox" value="qa_lead" onchange="toggleColumn(this)"> QA
-                                            Lead</label>
-                                        <label><input type="checkbox" value="role" checked
-                                                onchange="toggleColumn(this)"> Role</label>
-                                        <label><input type="checkbox" value="month" onchange="toggleColumn(this)">
-                                            Month</label>
-                                        <label><input type="checkbox" value="week" onchange="toggleColumn(this)">
-                                            Week</label>
-                                        <label><input type="checkbox" value="year" onchange="toggleColumn(this)">
-                                            Year</label>
-                                        <label><input type="checkbox" value="view" checked
-                                                onchange="toggleColumn(this)"> View</label>
-                                        <label><input type="checkbox" value="action" checked
-                                                onchange="toggleColumn(this)"> Action</label>
-                                    </div>
-
-                                    <button onclick="resetToDefaultColumns()" class="btn btn-danger mt-3"
-                                        style="background-color: red;">Clear</button>
+                            <div class="filter-modal-content" >
+                            <h3 style="font-size: 0.9rem; font-weight: bold;">Filters</h3>
+                        
+                            <!-- ROUND FILTERS -->
+                            <div class="round-filters">
+                                <label><input type="checkbox" value="introFilterContainer" onchange="toggleFilter(this)"> Intro Call Status</label>
+                                <label><input type="checkbox" value="interview1FilterContainer" onchange="toggleFilter(this)"> L1 Status</label>
+                                <label><input type="checkbox" value="interview2FilterContainer" onchange="toggleFilter(this)"> L2 Status</label>
+                                <label><input type="checkbox" value="allRoundsFilterContainer" onchange="toggleFilter(this)">All Rounds Status</label>
+                                <label><input type="checkbox" value="yearFilterContainer" onchange="toggleFilter(this)">Year</label>
                             </div>
-                        </div>
+                        
+                            <hr>
+                        
+                            <!-- COLUMN TOGGLES -->
+                            <h3 style="font-size: 0.9rem; font-weight: bold;">Table columns</h4>
+                            <div class="column-filters">
+                                <label><input type="checkbox" value="candidate_id" checked onchange="toggleColumn(this)"> ID</label>
+                                <label><input type="checkbox" value="candidate_name" checked onchange="toggleColumn(this)"> Name</label>
+                                <label><input type="checkbox" value="contact_number" checked onchange="toggleColumn(this)"> Contact Num</label>
+                                <label><input type="checkbox" value="experience" checked onchange="toggleColumn(this)"> Experience</label>
+                                <label><input type="checkbox" value="qa_lead" onchange="toggleColumn(this)"> QA Lead</label>
+                                <label><input type="checkbox" value="role" checked onchange="toggleColumn(this)"> Role</label>
+                                <label><input type="checkbox" value="month" onchange="toggleColumn(this)"> Month</label>
+                                <label><input type="checkbox" value="week" onchange="toggleColumn(this)"> Week</label>
+                                <label><input type="checkbox" value="year" onchange="toggleColumn(this)"> year</label>
+                                <label><input type="checkbox" value="view" checked onchange="toggleColumn(this)"> View</label>
+                                <label><input type="checkbox" value="action" checked onchange="toggleColumn(this)"> Action</label>
+                            </div>
+                        
+                            <button onclick="resetToDefaultColumns()" class="btn btn-danger mt-3" style="background-color: red;">Clear</button>
+                            </div>
+                      </div>
                     </div>
-
+                    
                 </div>
             </div>
-
-
-
+            
+            
+            
             <div class="table-responsive my-4">
-                <table class="table" style="min-width:95%;width: auto; max-width: 95%; table-layout: auto; margin-left:2%; 
+                <table class="table" style="min-width:95%;width: auto;
+                        max-width: 95%; 
+                        table-layout: auto;
+                        margin-left:1%; 
                         white-space: nowrap;">
-
+                    
                     <thead class="thead-dark">
                         <tr>
-                            <th class="checkbox-column"><input type="checkbox" id="select-all"></th>
-                            <th scope="col" class="candidate_id">ID</th>
+                            <th class="checkbox-column" ><input type="checkbox" id="select-all"></th>
+                            <th scope="col" class="candidate_id" >ID</th>
                             <th scope="col" class="candidate_name">Candidate Name</th>
                             <!-- <th scope="col" class="candidate_email">Email</th> -->
-                            <th scope="col" class="contact_number">Contact number</th>
+                            <th scope="col" class="contact_number" >Contact number</th>
                             <!-- <th scope="col">Qualification</th> -->
                             <th scope="col" class="experience" style="width: 0.3%;">Experience/Fresher</th>
                             <th scope="col" class="qa_lead" style="display: none;">QA Lead Assigned</th>
@@ -291,126 +252,119 @@
                             <th scope="col" class="month" style="display: none;">Month</th>
                             <th scope="col" class="year" style="display: none;">Year</th>
                             <th scope="col" class="week" style="display: none;">Week</th>
-
+                            
                             <!-- <th scope="col" class="int_details" >Interview Details</th> -->
-                            <th scope="col" class="view">View</th>
+                            <th scope="col" class="view" >View</th>
                             <th scope="col" class="action">Action</th>
+                            
                             <th scope="col" hidden>intro status</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        
                         {% for resume in resumes.items %}
-                        <tr>
-                            <td class="checkbox-column ">
-                                <input type="checkbox" class="resume-checkbox" value="{{ resume.id }}">
-                            </td>
-                            <td class="checkbox-column candidate_id">{{ start_index + loop.index }}</td>
-                            <td class="wrap-text checkbox-column candidate_name" id="name-{{ resume.id }}">
-                                {% if resume.Link %}
-                                <a href="{{ resume.Link }}" class="long-filename text-break" target="_blank">
-                                    <span id="short-name-{{ resume.id }}">
-                                        {{ resume.Name[:20] }}{% if resume.Name|length > 20 %}...{% endif %}
-                                    </span>
-                                </a>
-
-                                {% else %}
-                                <a href="{{ url_for('view_resume', filename=resume.filename) }}"
-                                    class="long-filename text-break" target="_blank">
-                                    <span id="short-name-{{ resume.id }}">
-                                        {{ resume.filename[:20] }}{% if resume.filename|length > 20 %}...{% endif %}
-                                    </span>
-                                </a>
-
-                                {% endif %}
-
-                                <a href="{{ url_for('get_intro_status', resume_id=resume.id) }}"
-                                    style="margin-left: 20px; color: red;display: none;"
-                                    onclick="getInterviewStatus(event,{{resume.id}})"><i
-                                        class="fa-solid fa-info"></i></a>
-                                <div id="toggle{{ resume.id }}" style="display: none;">
-                                    <div id="introStatus{{ resume.id }}" style="margin-bottom: 3px; margin-top:5px;">
+                            <tr>
+                                <td class="checkbox-column " >
+                                    <input type="checkbox" class="resume-checkbox" value="{{ resume.id }}">
+                                </td>
+                                <td class="checkbox-column candidate_id" >{{ start_index + loop.index }}</td>
+                                <td class="wrap-text checkbox-column candidate_name" id="name-{{ resume.id }}">
+                                    {% if resume.Link %}
+                                        <a href="{{ resume.Link }}" class="long-filename text-break" target="_blank">
+                                            <span id="short-name-{{ resume.id }}">
+                                                {{ resume.Name[:20] }}{% if resume.Name|length > 20 %}...{% endif %}
+                                            </span>
+                                        </a>
+                                        
+                                    {% else %}
+                                        <a href="{{ url_for('view_resume', filename=resume.filename) }}" class="long-filename text-break" target="_blank">
+                                            <span id="short-name-{{ resume.id }}">
+                                                {{ resume.filename[:20] }}{% if resume.filename|length > 20 %}...{% endif %}
+                                            </span>
+                                        </a>
+                                        
+                                    {% endif %}
+                                    
+                                    <a href="{{ url_for('get_intro_status', resume_id=resume.id) }}"  style="margin-left: 20px; color: red;display: none;" onclick="getInterviewStatus(event,{{resume.id}})"><i class="fa-solid fa-info" ></i></a>
+                                    <div id="toggle{{ resume.id }}" style="display: none;">
+                                        <div id="introStatus{{ resume.id }}" style="margin-bottom: 3px; margin-top:5px;"></div>
+                                        <div id="interview1Status{{ resume.id }}" style="margin-bottom: 3px;"></div>
+                                        <div id="interview2Status{{ resume.id }}" style="margin-bottom: 3px;"></div>
+                                        <div id="hrStatus{{ resume.id }}" style="margin-bottom: 3px;"></div>
                                     </div>
-                                    <div id="interview1Status{{ resume.id }}" style="margin-bottom: 3px;"></div>
-                                    <div id="interview2Status{{ resume.id }}" style="margin-bottom: 3px;"></div>
-                                    <div id="hrStatus{{ resume.id }}" style="margin-bottom: 3px;"></div>
-                                </div>
-                            </td>
-                            <!-- <td class="wrap-text" >
+                                </td>
+                                <!-- <td class="wrap-text" >
                                     {% if resume.Email %}
                                     {{ resume.Email }}
                                     {% else %}   
                                     None
                                     {% endif %}
                                     </td> -->
-
-                            <td style="margin: auto;" class="wrap-text checkbox-column contact_number">
-                                {% if resume.Phone %}
-                                {{ resume.Phone }}
-                                {% else %}
-                                None
-                                {% endif %}
-                            </td>
-                            <!-- <td class="wrap-text">
+                                    
+                                <td style="margin: auto;" class="wrap-text checkbox-column contact_number">
+                                    {% if resume.Phone %}
+                                    {{ resume.Phone }}
+                                    {% else %} 
+                                    None
+                                    {% endif %}
+                                </td>
+                                <!-- <td class="wrap-text">
                                     {% if resume.Qualification %}
                                     {{ resume.Qualification }}
                                     {% else %} 
                                     None
                                     {% endif %}
                                 </td> -->
-                            <div class="modal fade" id="viewModal{{ resume.id }}" tabindex="-1" aria-hidden="true"
-                                style="z-index: 100000;">
-                                <div class="modal-dialog modal-dialog-centered"> <!-- Centers modal -->
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">{{ resume.Name }} details</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p><strong>Email:</strong> {{ resume.Email or "None" }}</p>
-                                            <p><strong>Qualification:</strong> {{ resume.Qualification or "None" }}</p>
-                                            <p><strong>Location:</strong> {{ resume.Location or "None" }}</p>
-                                            <p><strong>Actual CTC:</strong> {{ resume.Actual_CTC or "None" }}</p>
-                                            <p><strong>Expected CTC:</strong> {{ resume.Expected_CTC or "None" }}</p>
-                                            <p><strong>Notice period:</strong> {{ resume.Notice_period or "None" }}</p>
-
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
+                                <div class="modal fade" id="viewModal{{ resume.id }}" tabindex="-1" aria-hidden="true" style="z-index: 100000;">
+                                    <div class="modal-dialog modal-dialog-centered"> <!-- Centers modal -->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">{{ resume.Name }} details</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p><strong>Email:</strong> {{ resume.Email or "None" }}</p>
+                                                <p><strong>Qualification:</strong> {{ resume.Qualification or "None" }}</p>
+                                                <p><strong>Location:</strong> {{ resume.Location or "None" }}</p>
+                                                <p><strong>Actual CTC:</strong> {{ resume.Actual_CTC or "None" }}</p>
+                                                <p><strong>Expected CTC:</strong> {{ resume.Expected_CTC or "None" }}</p>
+                                                <p><strong>Notice period:</strong> {{ resume.Notice_period  or "None" }}</p>
+                                                
+                                                
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+              
 
-
-                            <td class="wrap-text checkbox-column experience">
-                                {% if resume.Experience %}
-                                {{ resume.Experience }}
-                                {% else %}
-                                None
-                                {% endif %}
-                            </td>
-                            <td class="wrap-text checkbox-column qa_lead" id="QA_Lead-{{ resume.id }}"
-                                style="display: none;">
-                                {% if resume.QA_Lead %}
-                                {{ resume.QA_Lead }}
-                                {% else %}
-                                None
-                                {% endif %}
-                            </td>
-                            <!-- <td class="wrap-text">
+                                <td class="wrap-text checkbox-column experience">
+                                    {% if resume.Experience %}
+                                    {{ resume.Experience }}
+                                    {% else %} 
+                                    None
+                                    {% endif %}
+                                </td>
+                                <td class="wrap-text checkbox-column qa_lead" id="QA_Lead-{{ resume.id }}" style="display: none;">
+                                    {% if resume.QA_Lead %}
+                                    {{ resume.QA_Lead }}
+                                    {% else %} 
+                                    None
+                                    {% endif %}
+                                </td>
+                                <!-- <td class="wrap-text">
                                     {% if resume.Location %}
                                     {{ resume.Location }}
                                     {% else %} 
                                     None
                                     {% endif %}  
                                 </td> -->
-                            <td class="wrap-text checkbox-column role">
-                                {{resume.Role}}
-                            </td>
-                            <!-- <td class="wrap-text">
+                                <td class="wrap-text checkbox-column role">
+                                    {{resume.Role}}
+                                </td>
+                                <!-- <td class="wrap-text">
                                     <div>
                                         {% if resume.Expected_CTC %}
                                             <p>Expected CTC: {{ resume.Expected_CTC }}</p>
@@ -430,148 +384,124 @@
 
                                     </div>
                                 </td> -->
-                            <td class="wrap-text checkbox-column month" style="display: none;">{{resume.Month}}</td>
-                            <td class="wrap-text checkbox-column year" style="display: none;">{{resume.year}}</td>
-                            <td class="wrap-text checkbox-column week" style="display: none;">{{resume.week}}</td>
-                            <td class="wrap-text checkbox-column int_details" style="display: none;">x
-                                <div>
-                                    <a id="introButton{{ resume.id }}"
-                                        href="{{ url_for('introCall', resume_id=resume.id) }}"
-                                        class="btn btn-primary mx-1 my-2 " title="Intro call"
-                                        data-url="{{ url_for('get_intro_status', resume_id=resume.id) }}">Intro</a>
-                                    <a id="interview1Button{{ resume.id }}"
-                                        href="{{ url_for('interview1v', resume_id=resume.id) }}"
-                                        class="btn btn-primary mx-1 my-2" title="Interview 1"><i
-                                            class="fa-solid fa-phone"></i> 1</a>
-                                    {% if role == 'admin' %}
-                                    <a id="interview2Button{{ resume.id }}"
-                                        href="{{ url_for('interview2v', resume_id=resume.id) }}"
-                                        class="btn btn-primary mx-1 my-2 " title="Interview 2"><i
-                                            class="fa-solid fa-phone"></i> 2</a>
-                                    <a id="hrButton{{ resume.id }}" href="{{ url_for('hr', resume_id=resume.id) }}"
-                                        class="btn btn-primary mx-1 my-2" title="HR round">HR</a>
-                                    {% endif %}
+                                <td class="wrap-text checkbox-column month" style="display: none;">{{resume.Month}}</td>
+                                <td class="wrap-text checkbox-column year" style="display: none;">{{resume.year}}</td>
+                                <td class="wrap-text checkbox-column week" style="display: none;">{{resume.week}}</td>
+                                <td class="wrap-text checkbox-column int_details" style="display: none;">x
+                                    <div>
+                                        <a id="introButton{{ resume.id }}" href="{{ url_for('introCall', resume_id=resume.id) }}" class="btn btn-primary mx-1 my-2 " title="Intro call" data-url="{{ url_for('get_intro_status', resume_id=resume.id) }}">Intro</a>
+                                        <a id="interview1Button{{ resume.id }}" href="{{ url_for('interview1v', resume_id=resume.id) }}" class="btn btn-primary mx-1 my-2" title="Interview 1"><i class="fa-solid fa-phone"></i> 1</a>
+                                        {% if role == 'admin' %}
+                                            <a id="interview2Button{{ resume.id }}" href="{{ url_for('interview2v', resume_id=resume.id) }}" class="btn btn-primary mx-1 my-2 " title="Interview 2"><i class="fa-solid fa-phone"></i> 2</a>
+                                            <a id="hrButton{{ resume.id }}" href="{{ url_for('hr', resume_id=resume.id) }}" class="btn btn-primary mx-1 my-2" title="HR round">HR</a>
+                                        {% endif %}    
 
-                                </div>
-
-                            </td>
-                            <td class="wrap-text checkbox-column view"><a
-                                    href="{{url_for('resume_details',resume_id=resume.id)}}"
-                                    class="btn btn-primary mx-1" title="view">
-                                   <i class="fa-solid fa-eye mx-2" style="color:white; font-size: 1.2rem;"></i>
-                            </a></td>
-                            <td class="wrap-text checkbox-column action">
+                                    </div>
+                                    
+                                </td>
+                               <td class="wrap-text checkbox-column view" ><a href="{{url_for('resume_details',resume_id=resume.id)}}" class="btn btn-primary mx-1" title="view"><i class="fa-solid fa-eye mx-2" style="color:white;"></i></a></td>
+                               <td class="wrap-text checkbox-column action">
                                 <!-- <button class="btn btn-primary" style=" display: block; margin-left: auto; margin-right: auto;" onclick="window.location.href='{{ url_for('edit_employee_resume', employee_id=resume.id) }}'"><i class="fa-solid fa-pencil mx-2" style="color:#fff;"></i></button> -->
                                 <!-- <button class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#viewModal{{ resume.id }}" style="margin-top: 1rem;">More Info</button> -->
-
-                                <button class="btn btn-primary"
-                                    onclick="openActionModal({{ resume.id }}, '{{ role }}', '{{ resume.intro_status }}','{{ resume.l1_status }}', '{{ resume.l2_status }}', '{{ resume.hr_status }}')">
-                                    ...</button>
+                                
+                                <button class="btn btn-primary" onclick="openActionModal({{ resume.id }}, '{{ role }}', '{{ resume.intro_status }}','{{ resume.l1_status }}', '{{ resume.l2_status }}', '{{ resume.hr_status }}')">
+                                ...</button>
                                 <div id="actionModal" class="custom-modal" style="display: none;">
                                     <div class="custom-modal-content">
-                                        <ul class="modal-link-list">
-                                            <li class="modal_li"><a id="introLink"
-                                                    href="{{ url_for('introCall', resume_id=resume.id), '{{ resume.interview1_status }}', '{{ resume.hr_status }}' }}"
-                                                    class="link-item">Intro</a></li>
-                                            {% if resume.intro_status == "Move to Interview 1" %}
-                                            <li class="modal_li"><a id="l1Link" class="link-item">L1</a></li>
-                                            {% else %}
-                                            <li class="modal_li"><a id="l1Link" class="link-item">L1</a></li>
-                                            {% endif %}
-                                            {% if resume.interview1_status == "Move to Interview 2" %}
+                                      <ul class="modal-link-list">
+                                        <li class="modal_li"><a id="introLink" href="{{ url_for('introCall', resume_id=resume.id), '{{ resume.interview1_status }}', '{{ resume.hr_status }}' }}" class="link-item">Intro</a></li>
+                                        {% if resume.intro_status == "Move to Interview 1" %}
+                                            <li class="modal_li"><a id="l1Link"  class="link-item">L1</a></li>
+                                        {% else %}    
+                                            <li class="modal_li"><a id="l1Link"  class="link-item">L1</a></li>
+                                        {% endif %}
+                                        {% if resume.interview1_status == "Move to Interview 2" %}
                                             <li class="modal_li"><a id="l2Link" class="link-item"> L2</a></li>
-                                            {% else %}
+                                        {% else %} 
                                             <li class="modal_li"><a id="l2Link" class="link-item"> L2</a></li>
-                                            {% endif %}
-                                            <li class="modal_li"><a id="hrLink" class="link-item">HR</a></li>
-                                            <li class="modal_li"><a id="editLink" class="link-item">Edit Resume</a></li>
-                                            <li class="modal_li" style="cursor: pointer;"><a id="moreInfoLink"
-                                                    class="link-item" data-bs-toggle="modal">More Info</a></li>
-                                        </ul>
-                                        <button onclick="closeActionModal()" class="btn btn-danger mt-3">Close</button>
+                                        {% endif %}    
+                                        <li class="modal_li"><a id="hrLink" class="link-item">HR</a></li>
+                                        <li class="modal_li"><a id="editLink" class="link-item">Edit Resume</a></li>
+                                        <li class="modal_li" style="cursor: pointer;"><a id="moreInfoLink" class="link-item" data-bs-toggle="modal">More Info</a></li>
+                                      </ul>
+                                      <button onclick="closeActionModal()" class="btn btn-danger mt-3">Close</button>
                                     </div>
-                                </div>
-                            </td>
-
-
-                        </tr>
+                                  </div>
+                               </td>
+                               
+                               
+                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
-
-                <div
-                    style="display: flex ; align-items: center !important; gap: 2rem; align-items: center; margin-top: 2rem;justify-content: space-between; width: 90%;margin-left: 2rem;">
-                    <div style="display: {{ 'inline-block' if role == 'admin' else 'none' }};">
-                        <button class="btn btn-danger" id="delete-selected" disabled
-                            style="width: 7rem !important; margin-bottom: 3rem;">Delete </button>
-                    </div>
-                    <div style="display: flex; flex-direction: column;">
-                        <div style="display: flex; align-items: center; justify-content: space-between;">
-                            <div>
-                                {% for page_num in resumes.iter_pages(left_edge=1, right_edge=1, left_current=1,
-                                right_current=2) %}
-                                {% if page_num %}
-                                {% if resumes.page == page_num %}
-                                <a class="btn btn-info mb-4"
-                                    href="{{ url_for('employee') }}?{{ base_query_string }}&page={{ page_num }}"
-                                    style="color: black;">
-                                    {{ page_num }}
-                                </a>
-                                {% else %}
-                                <a class="btn btn-outline-info mb-4"
-                                    href="{{ url_for('employee') }}?{{ base_query_string }}&page={{ page_num }}"
-                                    style="color: black;">
-                                    {{ page_num }}
-                                </a>
-                                {% endif %}
-                                {% else %}
-                                ...
-                                {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
-                        <div>
-                            Showing {{ start_index + 1 }} to {{ end_index }} of {{ total_items }} resumes
-                        </div>
-
-                    </div>
-                    <div style="margin-bottom: 1rem;">
-                        <form method="POST" action="{{ request.path }}?{{ request.query_string.decode() }}"
-                            id="pageSizeForm">
-                            Results per page:
-                            <select name="page_size" class="option" style="width: 7rem !important; margin-bottom: 2rem;"
-                                onchange="document.getElementById('pageSizeForm').submit();">
-                                {% for option in page_size_options %}
-                                <option value="{{ option }}" {% if option==selected_page_size %}selected{% endif %}>{{
-                                    option }}</option>
-                                {% endfor %}
-                            </select>
-
-                            <input type="hidden" name="month" value="{{ selected_month }}">
-                        </form>
-                    </div>
-
-
-
+                
+                <div style="display: flex !important; align-items: center !important; gap: 2rem; align-items: center; margin-top: 2rem;justify-content: space-between; width: 90%;margin-left: 2rem;">
+                <div style="display: {{ 'inline-block' if role == 'admin' else 'none' }};">
+                    <button class="btn btn-danger" id="delete-selected" disabled style="width: 7rem !important; margin-bottom: 3rem;">Delete </button>
                 </div>
-
-            </div>
-
-        </div>
-
-
+                <div style="display: flex; flex-direction: column;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div>
+                            {% for page_num in resumes.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+                                {% if page_num %}
+                                    {% if resumes.page == page_num %}
+                                        <a class="btn btn-info mb-4"
+                                           href="{{ url_for('employee') }}?{{ base_query_string }}&page={{ page_num }}"
+                                           style="color: black;">
+                                            {{ page_num }}
+                                        </a>
+                                    {% else %}
+                                        <a class="btn btn-outline-info mb-4"
+                                           href="{{ url_for('employee') }}?{{ base_query_string }}&page={{ page_num }}"
+                                           style="color: black;">
+                                            {{ page_num }}
+                                        </a>
+                                    {% endif %}
+                                {% else %}
+                                    ...
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div >
+                        Showing {{ start_index + 1 }} to {{ end_index }} of {{ total_items }} resumes
+                    </div>
+                    
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <form method="POST" action="{{ request.path }}?{{ request.query_string.decode() }}" id="pageSizeForm">
+                    Results per page:
+                    <select name="page_size" class="option" style="width: 7rem !important; margin-bottom: 2rem;" onchange="document.getElementById('pageSizeForm').submit();">
+                        {% for option in page_size_options %}
+                        <option value="{{ option }}" {% if option == selected_page_size %}selected{% endif %}>{{ option }}</option>
+                        {% endfor %}
+                    </select>
+                    
+                    <input type="hidden" name="month" value="{{ selected_month }}">
+                    </form>
+                </div>
+                
+                
+                
+                </div>
+                
+            </div>   
+            
     </div>
-
-
-    <script src="{{ url_for('static', filename='config.js') }}"></script>
+    
+                        
+    </div>
+    
+    
+    <script src="{{ url_for('static', filename='config.js') }}"></script>   
     <script src="{{ url_for('static', filename='employee.js') }}?v=1.6"></script>
     <script>
         function toggleFullName(id, fullName, event) {
             event.preventDefault(); // Prevent scrolling to the top
-
+    
             let nameElement = document.getElementById("short-name-" + id);
             let buttonElement = document.getElementById("more-info-" + id);
-
+    
             if (buttonElement.innerText === "More...") {
                 // Expand to full name
                 nameElement.innerText = fullName;
@@ -583,68 +513,68 @@
             }
         }
     </script>
-
+    
     <script>
         {% for resume in resumes %}
-        var storedName{{ resume.id }}=localStorage.getItem('enteredName{{ resume.id }}');
-        if (storedName{ { resume.id } }) {
-            document.getElementById('btn_name{{ resume.id }}').style.display = 'none';
-            document.getElementById('div_name{{ resume.id }}').innerHTML = storedName{ { resume.id } };
-            document.getElementById('div_name{{ resume.id }}').style.display = 'block';
-        }
-        var storedActualCTC{{ resume.id }} = localStorage.getItem('enteredActualCTC{{resume.id}}');
-        if (storedActualCTC{ { resume.id } }) {
+            var storedName{{resume.id}}=localStorage.getItem('enteredName{{ resume.id }}');
+            if (storedName{{ resume.id }}){
+                document.getElementById('btn_name{{ resume.id }}').style.display = 'none';
+                document.getElementById('div_name{{ resume.id }}').innerHTML = storedName{{ resume.id }};
+                document.getElementById('div_name{{ resume.id }}').style.display = 'block';
+            }
+            var storedActualCTC{{resume.id}} = localStorage.getItem('enteredActualCTC{{resume.id}}');
+        if (storedActualCTC{{resume.id}}) {
             document.getElementById('btn_actualCTC{{resume.id}}').style.display = 'none';
-            document.getElementById('div_actualCTC{{resume.id}}').innerHTML = storedActualCTC{ { resume.id } };
+            document.getElementById('div_actualCTC{{resume.id}}').innerHTML = storedActualCTC{{resume.id}};
             document.getElementById('div_actualCTC{{resume.id}}').style.display = 'block';
         }
 
         // Check for stored data for Expected CTC
-        var storedExpectedCTC{{ resume.id }} = localStorage.getItem('enteredExpectedCTC{{resume.id}}');
-        if (storedExpectedCTC{ { resume.id } }) {
+        var storedExpectedCTC{{resume.id}} = localStorage.getItem('enteredExpectedCTC{{resume.id}}');
+        if (storedExpectedCTC{{resume.id}}) {
             document.getElementById('btn_expectedCTC{{resume.id}}').style.display = 'none';
-            document.getElementById('div_expectedCTC{{resume.id}}').innerHTML = storedExpectedCTC{ { resume.id } };
+            document.getElementById('div_expectedCTC{{resume.id}}').innerHTML = storedExpectedCTC{{resume.id}};
             document.getElementById('div_expectedCTC{{resume.id}}').style.display = 'block';
         }
 
         // Check for stored data for Role
-        var storedRole{{ resume.id }} = localStorage.getItem('enteredRole{{resume.id}}');
-        if (storedRole{ { resume.id } }) {
+        var storedRole{{resume.id}} = localStorage.getItem('enteredRole{{resume.id}}');
+        if (storedRole{{resume.id}}) {
             document.getElementById('btn_role{{resume.id}}').style.display = 'none';
-            document.getElementById('div_role{{resume.id}}').innerHTML = storedRole{ { resume.id } };
+            document.getElementById('div_role{{resume.id}}').innerHTML = storedRole{{resume.id}};
             document.getElementById('div_role{{resume.id}}').style.display = 'block';
         }
-        var storedLocation{{ resume.id }} = localStorage.getItem('enteredLocation{{resume.id}}');
-        if (storedLocation{ { resume.id } }) {
+        var storedLocation{{resume.id}} = localStorage.getItem('enteredLocation{{resume.id}}');
+        if (storedLocation{{resume.id}}) {
             document.getElementById('btn_location{{resume.id}}').style.display = 'none';
-            document.getElementById('div_location{{resume.id}}').innerHTML = storedLocation{ { resume.id } };
+            document.getElementById('div_location{{resume.id}}').innerHTML = storedLocation{{resume.id}};
             document.getElementById('div_location{{resume.id}}').style.display = 'block';
         }
-        var storedContact{{ resume.id }} = localStorage.getItem('enteredContact{{resume.id}}');
-        if (storedContact{ { resume.id } }) {
+        var storedContact{{resume.id}} = localStorage.getItem('enteredContact{{resume.id}}');
+        if (storedContact{{resume.id}}) {
             document.getElementById('btn_contact{{resume.id}}').style.display = 'none';
-            document.getElementById('div_contact{{resume.id}}').innerHTML = storedContact{ { resume.id } };
+            document.getElementById('div_contact{{resume.id}}').innerHTML = storedContact{{resume.id}};
             document.getElementById('div_contact{{resume.id}}').style.display = 'block';
         }
         {% endfor %}
         function handleDelete(resumeId, form, filename) {
             if (!confirm('Are you sure you want to delete ' + filename + '?')) {
-                return false; // Prevent form submission if user cancels
+            return false; // Prevent form submission if user cancels
+        }
+
+        var fields = ['Name', 'Contact', 'Location', 'Role', 'ExpectedCTC', 'ActualCTC'];
+        fields.forEach(function(field) {
+            var itemKey = 'entered' + field + resumeId;
+            var enteredValue = localStorage.getItem(itemKey);
+            if (enteredValue) {
+                // alert('Deleting item: ' + enteredValue);
+                localStorage.removeItem(itemKey);
+            } else {
+                // alert('No item found in local storage for key: ' + itemKey);
             }
+        });
 
-            var fields = ['Name', 'Contact', 'Location', 'Role', 'ExpectedCTC', 'ActualCTC'];
-            fields.forEach(function (field) {
-                var itemKey = 'entered' + field + resumeId;
-                var enteredValue = localStorage.getItem(itemKey);
-                if (enteredValue) {
-                    // alert('Deleting item: ' + enteredValue);
-                    localStorage.removeItem(itemKey);
-                } else {
-                    // alert('No item found in local storage for key: ' + itemKey);
-                }
-            });
-
-            return true;
+        return true;
         }
     </script>
     <script>
@@ -657,146 +587,146 @@
         }
     </script>
     <script>
-        const homeUrl = "{{ url_for('employee') }}";
+      const homeUrl = "{{ url_for('employee') }}";
     </script>
     <script>
         var deleteSelectedResumesUrl = "{{ url_for('delete_selected_resumes') }}";
     </script>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const urlParams = new URLSearchParams(window.location.search);
-            const searchValue = urlParams.get("search");
-            const selectedMonth = urlParams.get("month");
-            const selectedWeek = urlParams.get("week");
-            const qaLeadCheckbox = document.querySelector("input[value='qa_lead']");
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchValue = urlParams.get("search");
+        const selectedMonth = urlParams.get("month");
+        const selectedWeek = urlParams.get("week");
+        const qaLeadCheckbox = document.querySelector("input[value='qa_lead']");
 
-            if (searchValue) {
-                // Auto-check QA Lead
-                qaLeadCheckbox.checked = true;
+        if (searchValue ) {
+            // Auto-check QA Lead
+            qaLeadCheckbox.checked = true;
 
-                // Trigger change event to show the column
-                let event = new Event("change");
-                qaLeadCheckbox.dispatchEvent(event);
+            // Trigger change event to show the column
+            let event = new Event("change");
+            qaLeadCheckbox.dispatchEvent(event);
+        }
+        if (selectedMonth) {
+            const monthCheckbox = document.querySelector("input[value='month']");
+            if (monthCheckbox) {
+                monthCheckbox.checked = true;
+                monthCheckbox.dispatchEvent(new Event("change"));
             }
-            if (selectedMonth) {
-                const monthCheckbox = document.querySelector("input[value='month']");
-                if (monthCheckbox) {
-                    monthCheckbox.checked = true;
-                    monthCheckbox.dispatchEvent(new Event("change"));
-                }
-            }
+        }
 
-            if (selectedWeek) {
-                const weekCheckbox = document.querySelector("input[value='week']");
-                if (weekCheckbox) {
-                    weekCheckbox.checked = true;
-                    weekCheckbox.dispatchEvent(new Event("change"));
-                }
-
-
+        if (selectedWeek) {
+            const weekCheckbox = document.querySelector("input[value='week']");
+            if (weekCheckbox) {
+                weekCheckbox.checked = true;
+                weekCheckbox.dispatchEvent(new Event("change"));
             }
 
-            // Your existing checkbox logic
-            document.querySelectorAll('#dropdown-menu input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', function () {
-                    let columnClass = this.value;
-                    let isChecked = this.checked;
+            
+        }
 
-                    document.querySelectorAll('.' + columnClass).forEach(cell => {
-                        cell.style.display = isChecked ? '' : 'none';
-                    });
+        // Your existing checkbox logic
+        document.querySelectorAll('#dropdown-menu input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function () {
+                let columnClass = this.value;
+                let isChecked = this.checked;
 
-                    // Resize logic
-                    let visibleColumns = document.querySelectorAll('th:not([style*="display: none"])').length;
-                    let table = document.querySelector('.table');
-                    let minWidth = 50;
-                    let maxWidth = 100;
-                    let newWidth = minWidth + (visibleColumns * 5);
-                    table.style.width = newWidth > maxWidth ? '100%' : newWidth + '%';
+                document.querySelectorAll('.' + columnClass).forEach(cell => {
+                    cell.style.display = isChecked ? '' : 'none';
                 });
+
+                // Resize logic
+                let visibleColumns = document.querySelectorAll('th:not([style*="display: none"])').length;
+                let table = document.querySelector('.table');
+                let minWidth = 50;
+                let maxWidth = 100;
+                let newWidth = minWidth + (visibleColumns * 5);
+                table.style.width = newWidth > maxWidth ? '100%' : newWidth + '%';
             });
         });
-    </script>
-    <script>
-        function openActionModal(resumeId, role, introStatus, interview1Status, interview2Status, hrStatus) {
-            const introBaseUrl = "{{ url_for('introCall', resume_id=0) }}".replace("0", resumeId);
-            const l1BaseUrl = "{{ url_for('interview1v', resume_id=0) }}".replace("0", resumeId);
-            const l2BaseUrl = "{{ url_for('interview2v', resume_id=0) }}".replace("0", resumeId);
-            const hrBaseUrl = "{{ url_for('hr', resume_id=0) }}".replace("0", resumeId);
-            const editUrl = "{{ url_for('edit_employee_resume', employee_id=0) }}".replace("0", resumeId);
-            const viewModalTarget = "#viewModal" + resumeId;
+    });
+</script>
+<script>
+  function openActionModal(resumeId, role, introStatus, interview1Status,interview2Status, hrStatus) {
+    const introBaseUrl = "{{ url_for('introCall', resume_id=0) }}".replace("0", resumeId);
+    const l1BaseUrl = "{{ url_for('interview1v', resume_id=0) }}".replace("0", resumeId);
+    const l2BaseUrl = "{{ url_for('interview2v', resume_id=0) }}".replace("0", resumeId);
+    const hrBaseUrl = "{{ url_for('hr', resume_id=0) }}".replace("0", resumeId);
+    const editUrl = "{{ url_for('edit_employee_resume', employee_id=0) }}".replace("0", resumeId);
+    const viewModalTarget = "#viewModal" + resumeId;
 
-            document.getElementById("introLink").href = introBaseUrl;
+    document.getElementById("introLink").href = introBaseUrl;
+    
+    document.getElementById("editLink").href = editUrl;
+    document.getElementById("moreInfoLink").setAttribute("data-bs-target", viewModalTarget);
+    const l1Link = document.getElementById("l1Link");
+    const l2Link = document.getElementById("l2Link");
+    const hrLink = document.getElementById("hrLink");
+    if (introStatus === "Move to Interview 1") {
+        l1Link.style.display = "inline-block";
+        l1Link.href = l1BaseUrl;
+        l1Link.classList.remove("disabled-link");
+    } else {
+        l1Link.style.display = "none";  // or just hide it
+        l1Link.removeAttribute("href");
+    }
+    
+    if (role === 'admin') {
+        const l2Link = document.getElementById("l2Link");
+        const hrLink = document.getElementById("hrLink");
 
-            document.getElementById("editLink").href = editUrl;
-            document.getElementById("moreInfoLink").setAttribute("data-bs-target", viewModalTarget);
-            const l1Link = document.getElementById("l1Link");
-            const l2Link = document.getElementById("l2Link");
-            const hrLink = document.getElementById("hrLink");
-            if (introStatus === "Move to Interview 1") {
-                l1Link.style.display = "inline-block";
-                l1Link.href = l1BaseUrl;
-                l1Link.classList.remove("disabled-link");
-            } else {
-                l1Link.style.display = "none";  // or just hide it
-                l1Link.removeAttribute("href");
-            }
+        // Always show links
+        l2Link.style.display = 'inline-block';
+        hrLink.style.display = 'inline-block';
 
-            if (role === 'admin') {
-                const l2Link = document.getElementById("l2Link");
-                const hrLink = document.getElementById("hrLink");
-
-                // Always show links
-                l2Link.style.display = 'inline-block';
-                hrLink.style.display = 'inline-block';
-
-                // Enable L2 only if interview1_status is "Move to Interview 2"
-                if (interview1Status === "Move to Interview 2") {
-                    l2Link.href = l2BaseUrl;
-                    l2Link.classList.remove("disabled-link");
-                } else {
-                    l2Link.style.display = "none";
-                    l2Link.removeAttribute("href");
-                    l2Link.classList.add("disabled-link");
-                }
-                if (interview2Status === "Move to HR Round") {
-                    hrLink.href = hrBaseUrl;
-                    hrLink.classList.remove("disabled-link");
-                } else {
-                    hrLink.style.display = "none";
-                    hrLink.removeAttribute("href");
-                    hrLink.classList.add("disabled-link");
-                }
-                // You can enable HR based on similar condition (optional)
-
-            } else {
-                document.getElementById("l2Link").style.display = 'none';
-                document.getElementById("hrLink").style.display = 'none';
-            }
-
-            document.getElementById("actionModal").style.display = "block";
+        // Enable L2 only if interview1_status is "Move to Interview 2"
+        if (interview1Status === "Move to Interview 2") {
+            l2Link.href = l2BaseUrl;
+            l2Link.classList.remove("disabled-link");
+        } else {
+            l2Link.style.display = "none";
+            l2Link.removeAttribute("href");
+            l2Link.classList.add("disabled-link");
+        }
+        if (interview2Status === "Move to HR Round") {
+            hrLink.href = hrBaseUrl;
+            hrLink.classList.remove("disabled-link");
+        } else {
+            hrLink.style.display = "none";
+            hrLink.removeAttribute("href");
+            hrLink.classList.add("disabled-link");
+        }
+        // You can enable HR based on similar condition (optional)
+        
+        } else {
+        document.getElementById("l2Link").style.display = 'none';
+        document.getElementById("hrLink").style.display = 'none';
         }
 
-        function closeActionModal() {
-            document.getElementById("actionModal").style.display = "none";
-        }
+    document.getElementById("actionModal").style.display = "block";
+  }
 
-        window.onclick = function (event) {
-            const modal = document.getElementById("actionModal");
-            if (event.target === modal) {
-                closeActionModal();
-            }
-        };
-    </script>
-    <script>
-        document.getElementById('searchForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Stop form from submitting
-            handleFilters(); // Call your custom function
-        });
-    </script>
+  function closeActionModal() {
+    document.getElementById("actionModal").style.display = "none";
+  }
 
+  window.onclick = function(event) {
+    const modal = document.getElementById("actionModal");
+    if (event.target === modal) {
+      closeActionModal();
+    }
+  };
+</script>
+<script>
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Stop form from submitting
+    handleFilters(); // Call your custom function
+});
+</script>
+ 
 
 </body>
-
 </html>
+
