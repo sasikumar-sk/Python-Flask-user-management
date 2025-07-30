@@ -1,110 +1,129 @@
-*{
-    margin: 0 ;
+* {
+    margin: 0;
     font-family: "poppins";
 }
-.btn{
-    width:5rem !important;
+
+.btn {
+    width: 5rem !important;
 }
-th{
-    
+
+th {
     text-align: center;
-    background-color:#A9A9A9 !important;
-    color:rgb(8, 1, 1) !important;
+    background-color: #00ACFF !important;
+    color: rgb(255, 255, 255) !important;
 }
-th,td{
-    padding:4px;
+
+th,
+td {
+    padding: 4px;
     border: 1px solid #ddd;
-    
 }
-td{
+
+td {
     text-align: center;
-       /* Modern browsers */
-    white-space: normal; 
-    
+    /* Modern browsers */
+    white-space: normal;
 }
-.main_div{
+
+.main_div {
     margin: 0%;
-    width:24%; 
+    width: 24%;
     height: 100%;
-    background-color:#4699F9;
+    background-color: #4699f9;
 }
-.sidemenu_items{
+
+.sidemenu_items {
     display: flex;
     align-items: center;
-    justify-content:center;
-    margin-bottom:40px;
+    justify-content: center;
+    margin-bottom: 40px;
 }
-.sidemenu_items:hover{
+
+.sidemenu_items:hover {
     transform: scale(0.9);
 }
-.icon{
-    margin-right:30px;
+
+.icon {
+    margin-right: 30px;
     color: white;
 }
-.main_icon{
-    margin-left:10px;
-    margin-bottom:30px;
+
+.main_icon {
+    margin-left: 10px;
+    margin-bottom: 30px;
 }
-.first_div{
+
+.first_div {
     display: flex;
 }
-a{
+
+a {
     text-decoration: none;
 }
 
 .filename-cell {
-    
-    word-wrap: break-word;  /* This property allows long words to be broken and wrap onto the next line */
-    overflow-wrap: break-word; /* For browsers that support the newer property name */
+    word-wrap: break-word;
+    /* This property allows long words to be broken and wrap onto the next line */
+    overflow-wrap: break-word;
+    /* For browsers that support the newer property name */
 }
-td{
-    padding:0.5rem !important;
+
+td {
+    padding: 0.5rem !important;
 }
-.option{
-    width: 2rem!important;
+
+.option {
+    width: 2rem !important;
 }
+
 .button-container {
     display: flex;
-    
     flex-wrap: wrap;
 }
 
-.btn{
-    width:4.8rem!important;
-    height:2.6rem !important;
+.btn {
+    width: 4.8rem !important;
+    height: 2.6rem !important;
 }
-td{
-    padding:7px!important;
+
+td {
+    padding: 7px !important;
 }
-i{
+
+i {
     font-size: 15px;
 }
-.sub{
+
+.sub {
     margin-left: auto !important;
-    margin-right:auto!important ;
-    width:5rem !important;
-    margin-top:1rem;
+    margin-right: auto !important;
+    width: 5rem !important;
+    margin-top: 1rem;
 }
-label{
-    
-    color: #4699F9 ;
+
+label {
+    color: #4699f9;
 }
-.wrap-text{
-    
-    max-width:5.3rem!important;
-    overflow-wrap: break-word !important; /* Breaks long words */
-    word-wrap: break-word; /* For older browsers */
-    white-space: normal; 
+
+.wrap-text {
+    max-width: 5.3rem !important;
+    overflow-wrap: break-word !important;
+    /* Breaks long words */
+    word-wrap: break-word;
+    /* For older browsers */
+    white-space: normal;
 }
-.inner_filter{
-    display: flex;
-    flex-direction: column;
-}
+
 select {
-    width: 10rem;
+    width: max-content;
+    /*Updated by sasi*/
+    min-width: 90px;
+    width: auto;
+    padding: 1px 1px;
+    /*
+    width:90px;
     height: 36px;
     padding: 6px 12px;
-    
     background-color: #f4f5f7;
     border: 1px solid #dfe1e6;
     border-radius: 6px;
@@ -113,38 +132,46 @@ select {
     background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23000' stroke-width='1.5' fill='none' fill-rule='evenodd'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 10px center;
-    background-size: 12px;
-  }
-  
+    background-size: 12px;*/
+}
+
 label {
     margin-bottom: 4px;
     font-weight: 500;
     color: #344563;
-  }
+}
+
 .wrap-text a {
     display: inline-block;
-    vertical-align: middle; /* Ensures inline elements align properly */
+    vertical-align: middle;
+    /* Ensures inline elements align properly */
 }
 
 .wrap-text i {
-    font-size: 20px; /* Make icon size consistent */
+    font-size: 5px;
+    /* Make icon size consistent */
     vertical-align: middle;
-    margin-left: 8px; /* Reduce margin */
+    margin-left: 8px;
+    /* Reduce margin */
 }
 
 .filter-modal {
     position: absolute;
     z-index: 1000;
-    top: 70px; /* Adjust this to be just below your button */
+    top: 70px;
+    /* Adjust this depending on your button */
     left: 0;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 8px;
-    width:11rem;
+    width: 13rem;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     display: none;
-    margin-right: 3rem;
+    max-height: 300px;
+    /* Prevents it from overflowing screen */
+    overflow-y: auto;
+    /* Enables scroll inside */
 }
 
 .filter-modal-content {
@@ -173,9 +200,10 @@ label {
 }
 
 .more-filters-btn {
-    width: 10rem;
-    height: 36px;
-    padding: 6px 12px;
+    width: max-content;    /*Updated by sasi*/
+    min-width: 90px;
+    width: auto;
+    padding: 1px 1px; 
     background-color: #f4f5f7;
     border: 1px solid #dfe1e6;
     border-radius: 6px;
@@ -186,7 +214,8 @@ label {
     background-position: right 10px center;
     background-size: 12px;
 }
-  .custom-modal {
+
+.custom-modal {
     display: none;
     position: fixed;
     z-index: 9999;
@@ -194,29 +223,30 @@ label {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
-  }
-  
-  .custom-modal-content {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.custom-modal-content {
     background-color: #fff;
     margin: 10% auto;
     padding: 20px;
-    width: 320px;
+    width: 250px;
     border-radius: 10px;
     text-align: center;
-  }
-  .modal-link-list {
+}
+
+.modal-link-list {
     list-style: none;
-    padding: 0;
-    margin: 20px 0;
-     /* Align to the left */
-  }
-  
-  .modal-link-list li {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.modal-link-list li {
     margin: 12px 0;
-  }
-  
-  .link-item {
+}
+
+.link-item {
     display: block;
     padding: 10px 14px;
     color: black;
@@ -224,14 +254,14 @@ label {
     border-radius: 4px;
     transition: background-color 0.2s ease;
     font-weight: 500;
-    
     text-align: left;
-  }
-  
+}
+
 .modal_li:hover {
     background-color: #f0f0f0;
     text-decoration: none;
-  }
-  label:has(input[type="checkbox"]) {
-    font-size:0.9rem;
-  }  
+}
+
+label:has(input[type="checkbox"]) {
+    font-size: 0.9rem;
+}

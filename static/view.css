@@ -1,7 +1,7 @@
 
 a{
     text-decoration: none;
-    color:red;
+    color: black;
 }
 .icon-1{
     color: aqua;
@@ -29,13 +29,10 @@ a{
     color:#00A9FF;
     
 }
-
 .table .table_header {
-    text-align: center;
-    background-color:#A9A9A9 !important;
-    color:rgb(8, 1, 1) !important;
-    }
-
+    background-color: #00ACFF;
+    color: white;
+}
 .table.table-primary {
         background-color: #1AACAC !important ; /* Change the background color */
         color: black !important ; /* Change the text color */
@@ -98,7 +95,7 @@ Add this to your CSS file */
     justify-content: space-between;
 }  
 a:hover {
-    color: #007bff; 
+    color: #0099ff; 
 }
 .poppins{
     font-family:"poppins"
@@ -127,6 +124,7 @@ a:hover {
 }
 select{
     width:90px;
+       font-family:"poppins"
 }
 .dmax_view_filter_div{
     
@@ -149,7 +147,7 @@ select{
 .tables td,
 .tables th {
   padding: 10px; /* Adjust padding as needed */
-  /* font-size: 14px; Adjust font size as needed */
+   font-size: 14px; /*Adjust font size as needed */
   white-space: nowrap; /* Prevent text wrapping */
   overflow: hidden; /* Hide any overflowing content */
   text-overflow: ellipsis; /* Show ellipsis for overflow */

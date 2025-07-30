@@ -1,416 +1,495 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Employee database</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='font.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
-    <script>
-      var project="{{project}}"
-      var designation="{{designation}}"
-      var employment_status="{{employment_status}}"
-      var stats="{{status}}"
-      var loc="{{loc}}"
-      
-      var month="{{month}}"
-      
-    </script>
-  </head>
-  <style>
-   .table {
-        width:95%;
-        table-layout: fixed; /* Fix the table layout */
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .table td{
-        width:600px!important;
-      }
-      .table td,
-      .table th {
-        font-size: 14px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 10px; 
-      }
-      .icon:hover {
-        transform: scale(1.4); /* Increases size slightly */
-        color: #007bff; /* Changes color on hover */
-      }
-      th, td {
-  padding:4px;
-  border: 1px solid #ddd;
-}
-.truncate {
-  /* Adjust the width as needed */
-  width: 2px!important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  white-space: nowrap;
-}
 
-td.truncate:hover {
-  overflow: visible;
-  background-color: #f9f9f9;
-  position: relative;
-}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee database</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/9fe3d1bfff.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='font.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
+  
+  <script>
+    var project = "{{project}}"
+    var designation = "{{designation}}"
+    var employment_status = "{{employment_status}}"
+    var stats = "{{status}}"
+    var loc = "{{loc}}"
 
-td.truncate:hover::after {
-  content: attr(title);
-  position: absolute;
-  left: 0;
-  top: 100%;
-  background: #333;
-  color: #fff;
-  padding: 5px;
-  white-space: nowrap;
-  z-index: 10;
-}
-  </style>
-  <body>
-    <div class="first_div">
-      {% include 'sidemenu.html'%}
-      <div style="margin-left:105px;">
+    var month = "{{month}}"
+
+  </script>
+</head>
+<style>
+  .table {
+    width: 95%;
+    table-layout: fixed;
+    /* Fix the table layout */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .table td {
+    width: 600px !important;
+  }
+
+  .table td,
+  .table th {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 10px;
+  }
+
+  .icon:hover {
+    transform: scale(1.4);
+    /* Increases size slightly */
+    color: #007bff;
+    /* Changes color on hover */
+  }
+
+  th,
+  td {
+    padding: 4px;
+    border: 1px solid #ddd;
+  }
+
+  .truncate {
+    /* Adjust the width as needed */
+    width: 2px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap;
+  }
+
+  td.truncate:hover {
+    overflow: visible;
+    background-color: #f9f9f9;
+    position: relative;
+  }
+
+  td.truncate:hover::after {
+    content: attr(title);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    background: #333;
+    color: #fff;
+    padding: 5px;
+    white-space: nowrap;
+    z-index: 10;
+  }
+</style>
+
+<body>
+  <div class="first_div">
+    {% include 'sidemenu.html'%}
+    <div style="margin-left:80px; margin-right:-5px;">
+
+      <h2 class="filters_title my-3 headline">Employee's Data</h2>
+
+
+      <div class="filter_div" style="margin-bottom: 30px;">
         <div class="container-fluid">
           <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container">
-              
+
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                
+
                 <form class="d-flex col-8 my-2" action="{{ url_for('Home') }}" role="search" method="GET">
-                  <input class="form-control me-2" type="search" id="search_bar" placeholder="Search by Name" name="search" aria-label="Search" value="{{ search_query }}" style="margin-right:2rem!important;">
-                  <button class="btn btn-primary" type="submit" >Search</button>
-                  <button type="button" class="btn btn-danger" onclick="clearSearch()" style="margin-left: 2rem;">Clear</button>
+                  <input class="form-control me-2" type="search" id="search_bar" placeholder="Search by Name"
+                    name="search" aria-label="Search" value="{{ search_query }}" style="margin-right:2rem!important;">
+                  <button class="btn btn-primary" type="submit">Search</button>
+                  <button type="button" class="btn btn-danger" onclick="clearSearch()"
+                    style="margin-left: 2rem;">Clear</button>
                 </form>
               </div>
             </div>
           </nav>
         </div>
-        <h2 class="filters_title my-3 headline" >Employee's Data</h2>
-        
-      
-        <div class="filter_div" style="margin-bottom: 30px;">
-          <div class=" filter">
-            <div >
-              <label for="project" class="label">Project:</label>
-              <select name="project" id="project" class="select_project" onchange="handleFilters()">
-                  <option value="">Select</option>
-              </select>
-              
-          </div>
-            
-            <div>
-              <label for="designation" class="label">Designation:</label>
-              <select name="designation" id="designation" onchange="handleFilters()">
-                <option value="">Select</option>
-              </select>
-              
-            </div>
-            
-            <div>
-              <label for="employment_status" class="label">Billing Status:</label>
-              <select name="employment_status" id="employment_status" onchange="handleFilters()">
-                <option value="">Select</option>
-                
-              </select>
-              
-            </div>
-            <div>
-              <label for="status" class="label">Status:</label>
-              <select name="status" id="status" onchange="handleFilters()">
-                <option value="">Select</option>
-                
-              </select>
-            </div>
-            
-            <div>
-            
-      
-              <label for="location" class="label">Location:</label>
-              <select name="location" id="location" onchange="handleFilters()">
-                <option value="">Select</option>
-                
-              </select>
-            </div>
-      
-            <div>
-              <label for="month" class="select_month label" style="color: #00A9FF;">Date of joining:</label>
-              <select name="month" id="month" class="select_month_value" onchange="handleFilters()">
-                <option value="">Select</option>
-                <option value="january" class="month_value" {% if month == "01"%}selected{% endif %}>January</option>
-                <option value="february" class="month_value" {% if month == "02"%}selected{% endif %}>February</option>
-                <option value="march" class="month_value" {% if month == "03"%}selected{% endif %}>March</option>
-                <option value="april" class="month_value" {% if month == "04"%}selected{% endif %}>April</option>
-                <option value="may" class="month_value" {% if month == "05"%}selected{% endif %}>May</option>
-                <option value="june" class="month_value" {% if month == "06"%}selected{% endif %}>June</option>
-                <option value="july" class="month_value" {% if month == "07"%}selected{% endif %}>July</option>
-                <option value="august" class="month_value" {% if month == "08"%}selected{% endif %}>August</option>
-                <option value="september" class="month_value" {% if month == "09"%}selected{% endif %}>September</option>
-                <option value="october" class="month_value" {% if month == "10"%}selected{% endif %}>October</option>
-                <option value="november" class="month_value" {% if month == "11"%}selected{% endif %}>November</option>
-                <option value="december" class="month_value" {% if month == "12"%}selected{% endif %}>December</option>
-                </select>
-            </div>
-            
-            <div>
-              <label for="month_active" class="label" >Monthly active employees</label>
-              <input type="date" id="month_active_datepicker" oninput="handleFilters()" value="{{ request.args.get('activeMonth', '') }}">
-            </div>
-      
-            <div>
-              <label for="month_resigned"   class="label">Monthly resigned employees</label>
-              <input type="date" id="month_resigned_datepicker" oninput="handleFilters()" value="{{ request.args.get('resignedMonth', '') }}">
-            </div>
-          </div>
-          
+        <div class=" filter">
+          <div>
+            <label for="project" class="label">Project:</label>
+            <select name="project" id="project" class="select_project" onchange="handleFilters()">
+              <option value="">Select</option>
+            </select>
 
+          </div>
+
+          <div>
+            <label for="designation" class="label">Designation:</label>
+            <select name="designation" id="designation" onchange="handleFilters()">
+              <option value="">Select</option>
+            </select>
+
+          </div>
+
+          <div>
+            <label for="employment_status" class="label">Billing Status:</label>
+            <select name="employment_status" id="employment_status" onchange="handleFilters()">
+              <option value="">Select</option>
+
+            </select>
+
+          </div>
+          <div>
+            <label for="status" class="label">Status:</label>
+            <select name="status" id="status" onchange="handleFilters()">
+              <option value="">Select</option>
+
+            </select>
+          </div>
+
+          <div>
+
+
+            <label for="location" class="label">Location:</label>
+            <select name="location" id="location" onchange="handleFilters()">
+              <option value="">Select</option>
+
+            </select>
+          </div>
+
+          <div>
+            <label for="month" class="select_month label" class="label">Date of joining:</label>
+            <select name="month" id="month" class="select_month_value" onchange="handleFilters()">
+              <option value="">Select</option>
+              <option value="january" class="month_value" {% if month=="01" %}selected{% endif %}>January</option>
+              <option value="february" class="month_value" {% if month=="02" %}selected{% endif %}>February</option>
+              <option value="march" class="month_value" {% if month=="03" %}selected{% endif %}>March</option>
+              <option value="april" class="month_value" {% if month=="04" %}selected{% endif %}>April</option>
+              <option value="may" class="month_value" {% if month=="05" %}selected{% endif %}>May</option>
+              <option value="june" class="month_value" {% if month=="06" %}selected{% endif %}>June</option>
+              <option value="july" class="month_value" {% if month=="07" %}selected{% endif %}>July</option>
+              <option value="august" class="month_value" {% if month=="08" %}selected{% endif %}>August</option>
+              <option value="september" class="month_value" {% if month=="09" %}selected{% endif %}>September</option>
+              <option value="october" class="month_value" {% if month=="10" %}selected{% endif %}>October</option>
+              <option value="november" class="month_value" {% if month=="11" %}selected{% endif %}>November</option>
+              <option value="december" class="month_value" {% if month=="12" %}selected{% endif %}>December</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="month_active" class="label">Monthly active employees</label>
+            <input type="date" id="month_active_datepicker" oninput="handleFilters()"
+              value="{{ request.args.get('activeMonth', '') }}">
+          </div>
+
+          <div>
+            <label for="month_resigned" class="label">Monthly resigned employees</label>
+            <input type="date" id="month_resigned_datepicker" oninput="handleFilters()"
+              value="{{ request.args.get('resignedMonth', '') }}">
+          </div>
         </div>
-       
-        
-          
-        <div class="table my-6" >
-          <table class="table highlighted_row">
-            <thead>
-              <tr>
-                <th scope="col" class="table_header" style="margin-bottom: 200px!important;"><div style="display: flex; align-items: center;margin-bottom: 3px;"> <span style="text-align: center; margin-left:12px !important;">S.no.</span>
 
-                </div></th>
-                <th scope="col" class="table_header" style="align-items: center;">
-                  <div style="display: flex; align-items: center;margin-bottom: 3px;">Emp_id</div></th>
-                <th scope="col" class="table_header">
+
+      </div>
+
+
+<!---- Table ---> 
+      <div class="table my-6">
+        <table class="table highlighted_row:" style="width:100%;margin-left:15px" >
+          <thead>
+            <tr>
+              <th scope="col" class="table_header" style="margin-bottom: 200px!important;">
+                <div style="display: flex; align-items: center;margin-bottom: 3px;"> <span
+                    style="text-align: center; margin-left:12px !important;">S.no.</span>
+
+                </div>
+              </th>
+              <th scope="col" class="table_header" style="align-items: center;">
+                <div style="display: flex; align-items: center;margin-bottom: 3px;">Emp_id</div>
+              </th>
+              <th scope="col" class="table_header">
                 <div style="display: flex; align-items: center;justify-content:center">
                   <span style="text-align: center; margin-left:12px !important;">Name</span>
                   <div>
-                    <div style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
-                      <a href="{{ url_for('Home', sort_by='Name', sort_order='asc',page=page, search=search_query) }}" style="display: flex; ">
-                        
-                        <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;transition: transform 0.3s ease, color 0.3s ease !important;" title="ascending"></i>
+                    <div
+                      style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
+                      <a href="{{ url_for('Home', sort_by='Name', sort_order='asc',page=page, search=search_query) }}"
+                        style="display: flex; ">
+
+                        <i class="fa-solid fa-sort-up icon"
+                          style="font-size:13px; color:white;transition: transform 0.3s ease, color 0.3s ease !important;"
+                          title="ascending"></i>
                       </a>
-                      <a href="{{ url_for('Home', sort_by='Name', sort_order='desc',page=page, search=search_query) }}" style="display: flex;">
-                        
-                        <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;" title="descending"></i>
+                      <a href="{{ url_for('Home', sort_by='Name', sort_order='desc',page=page, search=search_query) }}"
+                        style="display: flex;">
+
+                        <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;"
+                          title="descending"></i>
                       </a>
                     </div>
                   </div>
                 </div>
-                </th>
-                <th scope="col" class="table_header" title="Designation">
-                  <div style="display: flex;align-items: center;">
-                    <div>Desig..</div>
-                    <div>
-                      <div style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
-                        <a href="{{ url_for('Home', sort_by='Designation', sort_order='asc',page=page, search=search_query) }}" style="display: flex; gap: 2px!important;">
-                          <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;" title="ascending"></i>
-                        </a>
-                        <a href="{{ url_for('Home', sort_by='Designation', sort_order='desc',page=page, search=search_query) }}" style="display: flex;">
-                          <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;" title="descending"></i>
-                        </a>
-                      </div>
-                    </div>
-                  </div></th>
-                <th scope="col" class="table_header" title="Department">
-                <div style="display: flex; align-items: center;">
-                  <div>Depar...</div>
+              </th>
+              <th scope="col" class="table_header" title="Designation">
+                <div style="display: flex;align-items: center;">
+                  <div>Designation</div>
                   <div>
-                    <div style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
-                      <a href="{{ url_for('Home', sort_by='Department', sort_order='asc',page=page, search=search_query) }}" style="display: flex;">
+                    <div
+                      style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
+                      <a href="{{ url_for('Home', sort_by='Designation', sort_order='asc',page=page, search=search_query) }}"
+                        style="display: flex; gap: 2px!important;">
                         <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;" title="ascending"></i>
                       </a>
-                      <a href="{{ url_for('Home', sort_by='Department', sort_order='desc',page=page, search=search_query) }}" style="display: flex;">
-                        <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;" title="descending"></i>
+                      <a href="{{ url_for('Home', sort_by='Designation', sort_order='desc',page=page, search=search_query) }}"
+                        style="display: flex;">
+                        <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;"
+                          title="descending"></i>
                       </a>
                     </div>
                   </div>
                 </div>
-                </th>
-                <th scope="col" class="table_header" title="Project">
-                  <div style="display: flex; align-items: center;">
-                    <div>
-                      Proje...
-                    </div>
-                    <div style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
-                      <a href="{{ url_for('Home', sort_by='Project', sort_order='asc',page=page, search=search_query) }}" style="display: flex;">
+              </th>
+              <th scope="col" class="table_header" title="Department">
+                <div style="display: flex; align-items: center;">
+                  <div>Department</div>
+                  <div>
+                    <div
+                      style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
+                      <a href="{{ url_for('Home', sort_by='Department', sort_order='asc',page=page, search=search_query) }}"
+                        style="display: flex;">
                         <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;" title="ascending"></i>
                       </a>
-                      <a href="{{ url_for('Home', sort_by='Project', sort_order='desc',page=page, search=search_query) }}" style="display: flex;">
-                        <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;" title="descending"></i>
+                      <a href="{{ url_for('Home', sort_by='Department', sort_order='desc',page=page, search=search_query) }}"
+                        style="display: flex;">
+                        <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;"
+                          title="descending"></i>
                       </a>
                     </div>
                   </div>
-                  
-                </th>
-                <th scope="col" class="table_header"><div style="display: flex; align-items: center;" title="Job Role">
-                  <div>Jb_rol.</div>
-                  <div style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
-                    <a href="{{ url_for('Home', sort_by='Job_role', sort_order='asc',page=page, search=search_query) }}" style="display: flex;">
+                </div>
+              </th>
+              <th scope="col" class="table_header" title="Project">
+                <div style="display: flex; align-items: center;">
+                  <div>
+                    Project
+                  </div>
+                  <div
+                    style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
+                    <a href="{{ url_for('Home', sort_by='Project', sort_order='asc',page=page, search=search_query) }}"
+                      style="display: flex;">
                       <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;" title="ascending"></i>
                     </a>
-                    <a href="{{ url_for('Home', sort_by='Job_role', sort_order='desc',page=page, search=search_query) }}" style="display: flex;">
-                      <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;" title="descending"></i>
-                    </a>
-                  </div>
-                </div></th>
-                <th scope="col" class="table_header"><div style="display: flex; align-items: center;" title="Employment Status">
-                  <div>
-                    Em stat.
-                  </div>
-                  <div style="display: flex; flex-direction: column; gap:1px; margin-left:6px;align-items: center !important;">
-                    <a href="{{ url_for('Home', sort_by='Employment_status', sort_order='asc',page=page, search=search_query) }}" style="display: flex;">
-                      <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;" title="ascending"></i>
-                    </a>
-                    <a href="{{ url_for('Home', sort_by='Employment_status', sort_order='desc',page=page, search=search_query) }}" style="display: flex;">
-                      <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;" title="descending"></i>
+                    <a href="{{ url_for('Home', sort_by='Project', sort_order='desc',page=page, search=search_query) }}"
+                      style="display: flex;">
+                      <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;"
+                        title="descending"></i>
                     </a>
                   </div>
                 </div>
-                  
-                </th>
-                <th scope="col" class="table_header" title="Joining Date"><div style="display: flex; align-items: center;margin-bottom: 3px;">Join_date</div></th>
-                <th scope="col" class="table_header" title="Experience"><div style="display: flex; align-items: center;margin-bottom: 3px;">Exper..</div></th>
-                <th scope="col" class="table_header" title="Location">
-                <div style="display: flex; align-items: center;">
-                  <div>Loc..</div>
+
+              </th>
+              <th scope="col" class="table_header">
+                <div style="display: flex; align-items: center;" title="Job Role">
+                  <div>Job Role</div>
+                  <div
+                    style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
+                    <a href="{{ url_for('Home', sort_by='Job_role', sort_order='asc',page=page, search=search_query) }}"
+                      style="display: flex;">
+                      <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;" title="ascending"></i>
+                    </a>
+                    <a href="{{ url_for('Home', sort_by='Job_role', sort_order='desc',page=page, search=search_query) }}"
+                      style="display: flex;">
+                      <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;"
+                        title="descending"></i>
+                    </a>
+                  </div>
+                </div>
+              </th>
+              <th scope="col" class="table_header">
+                <div style="display: flex; align-items: center;" title="Employment Status">
                   <div>
-                    <div style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
-                      <a href="{{ url_for('Home', sort_by='Location', sort_order='asc',page=page, search=search_query) }}" style="display: flex; gap: 2px!important;">
+                    Employment Status
+                  </div>
+                  <div
+                    style="display: flex; flex-direction: column; gap:1px; margin-left:6px;align-items: center !important;">
+                    <a href="{{ url_for('Home', sort_by='Employment_status', sort_order='asc',page=page, search=search_query) }}"
+                      style="display: flex;">
+                      <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;" title="ascending"></i>
+                    </a>
+                    <a href="{{ url_for('Home', sort_by='Employment_status', sort_order='desc',page=page, search=search_query) }}"
+                      style="display: flex;">
+                      <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;"
+                        title="descending"></i>
+                    </a>
+                  </div>
+                </div>
+
+              </th>
+              <th scope="col" class="table_header" title="Joining Date">
+                <div style="display: flex; align-items: center;margin-bottom: 3px;">Join_date</div>
+              </th>
+              <th scope="col" class="table_header" title="Experience">
+                <div style="display: flex; align-items: center;margin-bottom: 3px;">Experience.</div>
+              </th>
+              <th scope="col" class="table_header" title="Location">
+                <div style="display: flex; align-items: center;">
+                  <div>Location</div>
+                  <div>
+                    <div
+                      style="display: flex; flex-direction: column; gap:1px; margin-left: 8px;align-items: center !important;">
+                      <a href="{{ url_for('Home', sort_by='Location', sort_order='asc',page=page, search=search_query) }}"
+                        style="display: flex; gap: 2px!important;">
                         <i class="fa-solid fa-sort-up icon" style="font-size:13px; color:white;" title="ascending"></i>
                       </a>
-                      <a href="{{ url_for('Home', sort_by='Location', sort_order='desc',page=page, search=search_query) }}" style="display: flex;">
-                        <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;" title="descending"></i>
+                      <a href="{{ url_for('Home', sort_by='Location', sort_order='desc',page=page, search=search_query) }}"
+                        style="display: flex;">
+                        <i class="fa-solid fa-sort-down icon" style="font-size: 13px; color:black;"
+                          title="descending"></i>
                       </a>
                     </div>
                   </div>
                 </div>
-                </th>
-                <th scope="col" class="table_header" title="Last Promoted"><div style="display: flex; align-items: center;margin-bottom: 3px;" title="Last_promoted">L_prom..</div></th>
-                <th scope="col" class="table_header" title="Comments"><div style="display: flex; align-items: center;margin-bottom: 3px;">Comen..</div></th>
-                <th scope="col" class="table_header"><div style="display: flex; align-items: center;margin-bottom: 3px;">Edit</div></th>
-                <!-- <th scope="col" class="table_header">Delete</th> -->
-                <th scope="col" class="table_header"><div style="display: flex; align-items: center;margin-bottom: 3px;">View</div></th>
-                <th hidden>Empl</th>
-              </tr>
-            </thead>
-            <tbody>
-            
-              {% for employee in data.items %}
-              <tr {% if employee.employee_status == 'resigned' %}style="background-color: red;"{% endif %}>
-                <th scope="row" style="text-align: center;">{{ start_index + loop.index }}</th>
-                <td class="emp_id" class="table-primary">{{employee.Emp_id}}</td>
-                <td  id="Name">{{employee.Name}}</td>
-                <td id="Designation">{{employee.Designation}}</td>
-                <td>{{employee.Department}}</td>
-                <td  id="Project">{{employee.Project}}</td>
-                <td>{{employee.Job_role}}</td>
-                <td id="employment_status">{{employee.Employment_status}}</td>
-                <td id="joining_date">{{employee.Joining_date}}</td>
-                <td>{{employee.Experience}}</td>
-                <td id="employee_location">{{employee.Location }}</td>
-                <td>{{employee.Last_promoted }}</td>
-                <td>{{employee.Comments}}</td>
-                <td id="employee_status" hidden>{{employee.employee_status}}</td>
-                <!-- <td><a href="" type="button" class="btn btn-outline-secondary btn-sm mx-1">Update</button></td> -->
-                <td><a class="icon-1" href="{{ url_for('Update', sno=employee.Sno) }}"><i class="fa-solid fa-pencil mx-2"></i></a></td>  
-                <!-- <td><a href="{{ url_for('Delete', sno=employee.Sno) }}"><i class="fa-solid fa-trash mx-2"></i></a></td> -->
-                <td><a class="icon-2" href="{{ url_for('view', sno=employee.Sno) }}"><i class="fa-solid fa-eye mx-2"></i></a></td>
-                  <!-- <td><a href="" type="button" class="btn btn-outline-secondary btn-sm mx-1">Delete</button></td>   -->
-              </tr>
-              {% endfor %}
-              
-            </tbody>
-          </table>
-            <div style="display: flex; align-items: center; gap: 2rem; margin-right:10rem;margin-top:5rem;" >
-              <div style="margin-left:45%" id="paginationLinks ">
-                {% for page_num in data.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
-                  {% if page_num %}
-                    {% if data.page == page_num%}
-                      <a class="btn btn-outline-info mb-4" href="{{url_for('Home',page=page_num,pages=pages,search=search_query,project=project,designation=designation,employment_status=employment_status,location=loc,status=status,month=month)}}" >{{page_num}}</a>
-                    {% else %}
-                      <a class="btn btn- mb-4" href="{{url_for('Home',page=page_num,pages=pages,search=search_query,project=project,designation=designation,employment_status=employment_status,location=loc,status=status,month=month)}}" >{{page_num}}</a>
-                    {% endif %}
-                  {% else%}
-                    ...
-                  {% endif %}
-                {% endfor %} 
-                
-              </div>
-              <div>
-                <form method="POST" style="margin-bottom: 1rem;" id="pageSizeForm" action="{{ request.path }}?{{ request.query_string.decode() }}">
-                  Select Page Size:
-                  <select name="page_size" onchange="document.getElementById('pageSizeForm').submit();">
-                    {% for option in page_size_options %}
-                      <option value="{{ option }}" {% if option == selected_page_size %}selected{% endif %}>{{ option }}</option>
-                    {% endfor %}
-                  </select>
-                 
-                </form>
-              </div>
-              
-                
-              
-            </div>
-            
-        </div>
-          <div style="display: flex; align-items: center;justify-content:space-between!important; margin-left:40%; margin-top:rem; margin-bottom: 2rem;">
-            <div style="display: flex; align-items: center; ">
-              <div>
-                <a type="button" href="{{ url_for('Add') }}" class="btn btn-primary ">Add a new user</a>
-              </div>
-              <div>
-                <a type="button" href="{{ url_for('bulk') }}" class="btn btn-primary mx-3">Bulk add</a>
-              </div>
-              <div style="text-align: center;  flex-wrap: wrap;">
-                Page {{ data.page }} of {{ total_pages }} | Total Employees: {{ total_items }}
-              </div>
-            </div>
-           
-            
+              </th>
+              <th scope="col" class="table_header" title="Last Promoted">
+                <div style="display: flex; align-items: center;margin-bottom: 3px;" title="Last_promoted">Last_promoted
+                </div>
+              </th>
+              <th scope="col" class="table_header" title="Comments">
+                <div style="display: flex; align-items: center;margin-bottom: 3px;">Comments</div>
+              </th>
+              <th scope="col" class="table_header">
+                <div style="display: flex; align-items: center; margin-bottom: 3px;  ">Edit</div>
+              </th>
+              <!-- <th scope="col" class="table_header">Delete</th> -->
+              <th scope="col" class="table_header">
+                <div style="display: flex; align-items: center;margin-bottom: 3px;">View</div>
+              </th>
+              <th hidden>Empl</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {% for employee in data.items %}
+            <tr {% if employee.employee_status=='resigned' %}style="background-color: red;" {% endif %}>
+              <th scope="row" style="text-align: center;">{{ start_index + loop.index }}</th>
+              <td class="emp_id" class="table-primary">{{employee.Emp_id}}</td>
+              <td id="Name">{{employee.Name}}</td>
+              <td id="Designation">{{employee.Designation}}</td>
+              <td>{{employee.Department}}</td>
+              <td id="Project">{{employee.Project}}</td>
+              <td>{{employee.Job_role}}</td>
+              <td id="employment_status">{{employee.Employment_status}}</td>
+              <td id="joining_date">{{employee.Joining_date}}</td>
+              <td>{{employee.Experience}}</td>
+              <td id="employee_location">{{employee.Location }}</td>
+              <td>{{employee.Last_promoted }}</td>
+              <td>{{employee.Comments}}</td>
+              <td id="employee_status" hidden>{{employee.employee_status}}</td>
+              <!-- <td><a href="" type="button" class="btn btn-outline-secondary btn-sm mx-1">Update</button></td> -->
+              <td><a class="icon-1" href="{{ url_for('Update', sno=employee.Sno) }}"><i
+                    class="fa-solid fa-pencil mx-2"></i></a></td>
+              <!-- <td><a href="{{ url_for('Delete', sno=employee.Sno) }}"><i class="fa-solid fa-trash mx-2"></i></a></td> -->
+              <td><a class="icon-2" href="{{ url_for('view', sno=employee.Sno) }}"><i
+                    class="fa-solid fa-eye mx-2"></i></a></td>
+              <!-- <td><a href="" type="button" class="btn btn-outline-secondary btn-sm mx-1">Delete</button></td>   -->
+            </tr>
+            {% endfor %}
+
+          </tbody>
+        </table>
+        <div style="display: flex; align-items: center; gap: 2rem; margin-right:10rem;margin-top:5rem;">
+          <div style="margin-left:45%" id="paginationLinks ">
+            {% for page_num in data.iter_pages(left_edge=1,right_edge=1,left_current=1,right_current=2) %}
+            {% if page_num %}
+            {% if data.page == page_num%}
+            <a class="btn btn-outline-info mb-4"
+              href="{{url_for('Home',page=page_num,pages=pages,search=search_query,project=project,designation=designation,employment_status=employment_status,location=loc,status=status,month=month)}}">{{page_num}}</a>
+            {% else %}
+            <a class="btn btn- mb-4"
+              href="{{url_for('Home',page=page_num,pages=pages,search=search_query,project=project,designation=designation,employment_status=employment_status,location=loc,status=status,month=month)}}">{{page_num}}</a>
+            {% endif %}
+            {% else%}
+            ...
+            {% endif %}
+            {% endfor %}
+
           </div>
-          <div style="width:90%; margin-left: auto; margin-right: auto;" >
-            {% with messages = get_flashed_messages(with_categories=true) %}
-              {% if messages %}
-                {% for category, message in messages %}
-                  {% if category == 'error' %}
-                    <div class="alert alert-danger add_flash_message" role="alert" >
-                      {{ message }}
-                    </div>
-                  {% elif category == 'success' %}
-                    <div class="alert alert-success add_flash_message" role="alert" >
-                      {{ message }}
-                    </div>
-                  {% endif %}
+          <div>
+            <form method="POST" style="margin-bottom: 1rem;" id="pageSizeForm"
+              action="{{ request.path }}?{{ request.query_string.decode() }}">
+              Select Page Size:
+              <select name="page_size" onchange="document.getElementById('pageSizeForm').submit();">
+                {% for option in page_size_options %}
+                <option value="{{ option }}" {% if option==selected_page_size %}selected{% endif %}>{{ option }}
+                </option>
                 {% endfor %}
-              {% endif %}
-            {% endwith %}
+              </select>
+
+            </form>
           </div>
-          
-        
-          <!-- <a href="/add" type="button" class="btn btn-primary my-3 mx-3">Add a new user</button>
-          <a href="/bulk" type="button" class="btn btn-primary my-3">Bulk add</button>  -->
-            
-        </div>  
-        
+
+
+
+        </div>
+
       </div>
-      
+      <div
+        style="display: flex; align-items: center;justify-content:space-between!important; margin-left:40%; margin-top:rem; margin-bottom: 2rem;">
+        <div style="display: flex; align-items: center; ">
+          <div>
+            <a type="button" href="{{ url_for('Add') }}" class="btn btn-primary ">Add a new user</a>
+          </div>
+          <div>
+            <a type="button" href="{{ url_for('bulk') }}" class="btn btn-primary mx-3">Bulk add</a>
+          </div>
+          <div style="text-align: center;  flex-wrap: wrap;">
+            Page {{ data.page }} of {{ total_pages }} | Total Employees: {{ total_items }}
+          </div>
+        </div>
+
+
+      </div>
+      <div style="width:90%; margin-left: auto; margin-right: auto;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        {% if category == 'error' %}
+        <div class="alert alert-danger add_flash_message" role="alert">
+          {{ message }}
+        </div>
+        {% elif category == 'success' %}
+        <div class="alert alert-success add_flash_message" role="alert">
+          {{ message }}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+      </div>
+
+
+      <!-- <a href="/add" type="button" class="btn btn-primary my-3 mx-3">Add a new user</button>
+          <a href="/bulk" type="button" class="btn btn-primary my-3">Bulk add</button>  -->
+
     </div>
-    <script>
-      function clearSearch() {
-        const searchInput = document.querySelector('input[name="search"]');
-        searchInput.value = '';
-        searchInput.form.submit();
+
+  </div>
+
+  </div>
+  <script>
+    function clearSearch() {
+      const searchInput = document.querySelector('input[name="search"]');
+      searchInput.value = '';
+      searchInput.form.submit();
     }
 
-    </script>
-    <script>
-      const homeUrl = "{{ url_for('Home') }}";
-    </script>
-    <script src="{{ url_for('static', filename='config.js') }}"></script>
-    <script src="{{ url_for('static', filename='index.js') }}"></script>    
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+  </script>
+  <script>
+    const homeUrl = "{{ url_for('Home') }}";
+  </script>
+  <script src="{{ url_for('static', filename='config.js') }}"></script>
+  <script src="{{ url_for('static', filename='index.js') }}"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"></script>
+</body>
+
 </html>
