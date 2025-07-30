@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "User",
+            "group": "user",
+            "database": "${workspaceFolder:First Project}/F:\\Dev\\First Project"
+        }
+    ]
+}

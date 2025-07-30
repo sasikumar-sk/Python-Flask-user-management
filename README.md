@@ -53,17 +53,26 @@ File Structure
 
 
 ### Screenshots
-Home Page (User Dashboard)
+Home Page (Admin Dashboard)
 Shows a welcome message, user list, and buttons to manage users (if admin).
+<img width="1897" height="722" alt="image" src="https://github.com/user-attachments/assets/52d92677-fd1c-4898-aa66-41293b30e1ed" />
 
 Login Page
 Allows users to log in.
+<img width="1915" height="709" alt="image" src="https://github.com/user-attachments/assets/e3df0925-b0ff-4679-a3ba-a70a5d2a3451" />
 
 Register Page
 Allows users to register with their username, password, and role.
+<img width="1918" height="677" alt="image" src="https://github.com/user-attachments/assets/e909f372-2ad4-403e-979e-3bb68de4cda9" />
 
 Edit User Page
 Allows an admin to edit user details.
+<img width="1912" height="554" alt="image" src="https://github.com/user-attachments/assets/a53a7277-a767-47f0-9b0a-beffd647bd9b" />
+
+Home Page (User Dashboard)
+Shows a welcome message, user list only
+<img width="1873" height="669" alt="image" src="https://github.com/user-attachments/assets/0bc1830c-fdc3-4a28-90d8-dbe426e9a992" />
+
 
 ### Example Workflow
 Register a User:
